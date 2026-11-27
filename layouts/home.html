@@ -24,8 +24,8 @@
         <button type="button" role="tab" id="preview-tab" aria-controls="preview-view" aria-selected="false" aria-label="{{ $ui.previewLabel }}" tabindex="-1" data-js disabled>{{ partial "icon.html" "eye" }}<span>{{ $ui.preview }}</span></button>
       </div>
       <div class="toolbar-actions">
-        <button type="button" class="button upload-button" data-action="upload" aria-label="{{ $ui.upload }}" title="{{ $ui.upload }}" data-js disabled>{{ partial "icon.html" "upload" }}<span>{{ $ui.upload }}</span></button>
-        <button type="button" class="button primary" data-action="export" data-js disabled>{{ partial "icon.html" "download" }}<span>{{ $ui.export }}</span></button>
+        <button type="button" class="button upload-button" data-action="upload" aria-label="{{ $ui.upload }}. {{ $ui.uploadHint }}" title="{{ $ui.uploadHint }}" data-js disabled>{{ partial "icon.html" "upload" }}<span>{{ $ui.upload }}</span></button>
+        <button type="button" class="button primary" data-action="export" title="{{ $ui.exportHint }}" data-js disabled>{{ partial "icon.html" "download" }}<span>{{ $ui.export }}</span></button>
       </div>
     </div>
   </header>
@@ -70,7 +70,7 @@
           <h2>{{ $ui.previewTitle }}</h2>
           <p>{{ $ui.previewHelp }}</p>
           <div class="preview-sheet">
-            <div class="file-bar"><span>{{ partial "icon.html" "file" }}{{ $ui.filename }}</span><button class="text-button" type="button" data-action="copy">{{ partial "icon.html" "copy" }}{{ $ui.copy }}</button></div>
+            <div class="file-bar"><span>{{ partial "icon.html" "file" }}{{ $ui.filename }}</span><button class="text-button" type="button" data-action="copy" title="{{ $ui.copyHint }}">{{ partial "icon.html" "copy" }}{{ $ui.copy }}</button></div>
             <pre id="markdown" tabindex="0" aria-label="{{ $ui.previewTitle }}"></pre>
           </div>
         </section>

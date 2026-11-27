@@ -17,8 +17,8 @@
       <p class="privacy">{{ $ui.privacy }}</p>
       <p class="storage-warning" id="storage-warning" role="status" hidden>{{ $ui.messages.storageHelp }}</p>
       <div class="draft-actions">
-        <button class="text-button" type="button" data-action="copy" data-js disabled>{{ partial "icon.html" "copy" }}{{ $ui.copy }}</button>
-        <button class="text-button muted" type="button" data-action="clear" data-js disabled>{{ partial "icon.html" "erase" }}{{ $ui.clear }}</button>
+        <button class="text-button" type="button" data-action="copy" title="{{ $ui.copyHint }}" data-js disabled>{{ partial "icon.html" "copy" }}{{ $ui.copy }}</button>
+        <button class="text-button muted" type="button" data-action="clear" title="{{ $ui.clearHint }}" data-js disabled>{{ partial "icon.html" "erase" }}{{ $ui.clear }}</button>
       </div>
     </div>
   </div>

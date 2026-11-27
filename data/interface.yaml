@@ -1,5 +1,5 @@
 subtitle: A field guide to research code handover
-tagline: What you know is worth passing on.
+tagline: Notes for whoever picks up the code next.
 skip: Skip to the handover form
 home: Return to the title page
 views: Handover views
@@ -9,6 +9,10 @@ previewTitle: Markdown preview
 previewLabel: Preview Markdown
 previewHelp: This is the text that goes into your file. Return to Write to make changes.
 upload: Upload File
+uploadHint: Upload HANDOVER.md previously exported by this tool
+exportHint: Download your answered prompts as HANDOVER.md
+copyHint: Copy the full Markdown file to your clipboard
+clearHint: Review and clear this browser’s saved draft
 export: Export HANDOVER.md
 filename: HANDOVER.md
 contents: Contents
@@ -18,13 +22,13 @@ notes: Field notes
 example: Example response
 answerPlaceholder: Write your response…
 draft: Your handover
-privacy: Your words stay in this browser. Export a copy to keep them.
+privacy: This browser saves your draft as you type. Nothing you enter is sent to a server.
 copy: Copy Markdown
 clear: Clear responses
 back: Back to contents
 noScript: Turn on JavaScript to write, save, import and export a handover. You can read all the questions below.
 exportTitle: Export your handover
-destination: Place this file alongside your research code. You or another researcher can read, revise and extend it later.
+destination: Keep HANDOVER.md with your code so the next researcher can find it.
 privacyReminder: Leave out passwords, credentials, confidential personal information and anything that should stay out of your repository.
 download: Download HANDOVER.md
 cancel: Cancel
@@ -44,7 +48,7 @@ messages:
   local: Local draft
   saved: Saved in this browser
   unavailable: Browser saving unavailable
-  storageHelp: This browser could not save or restore all of your draft. Export a copy before closing this page.
+  storageHelp: This browser couldn’t save or load your draft. Download a copy before closing the page.
   zero: No responses yet
   one: 1 response written
   many: '{count} responses written'
