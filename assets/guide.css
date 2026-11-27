@@ -300,6 +300,8 @@ select { max-width: 100%; padding: .4rem .65rem; border: 1px solid var(--rule-da
 .prompt-topics { margin-top: .32rem; color: var(--color-text-secondary); font-size: .78rem; }
 
 @media (max-width: 25rem) {
-  .appearance:has(#persona) { grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto; grid-auto-flow: column; }
+  .appearance:has(#persona) { grid-template-columns: auto 1fr; }
+  .appearance label[for="persona"], .appearance #persona { grid-column: 1 / -1; }
+  .appearance #colour-mode { width: fit-content; }
   .title-copy:has(.appearance) { width: 100%; }
 }
