@@ -1,0 +1,48 @@
+layouts/_partials/chapter.html
+  s_e21dbb2078b1a1::t_f18efa37893ada 7,12-14,17,21-22
+layouts/home.html
+  s_e21dbb2078b1a1::t_f18efa37893ada 37,40-41,99
+assets/case-file.svg
+  s_e21dbb2078b1a1::t_f18efa37893ada 1-22
+assets/guide.css
+  s_e21dbb2078b1a1::t_f18efa37893ada 288-300
+assets/trail-map.svg
+  s_e21dbb2078b1a1::t_f18efa37893ada 1-19
+data/personas.yaml
+  s_e21dbb2078b1a1::t_19eb22004d8630 39,78-79
+  s_e21dbb2078b1a1::t_f18efa37893ada 1-38,40-77,80-83
+assets/js/app.mjs
+  s_e21dbb2078b1a1::t_f18efa37893ada 4,73,134,214-217,303-308,392-395
+tests/site.test.mjs
+  s_e21dbb2078b1a1::t_f18efa37893ada 35-40,82
+layouts/_partials/contents.html
+  s_e21dbb2078b1a1::t_f18efa37893ada 9
+data/interface.yaml
+  s_e21dbb2078b1a1::t_f18efa37893ada 2,101-103
+docs/index.html
+  s_e21dbb2078b1a1::t_f18efa37893ada 87-88,102,109
+assets/js/writing.mjs
+  s_e21dbb2078b1a1::t_f18efa37893ada 1-70
+aidecl.yaml
+  s_e21dbb2078b1a1::t_f18efa37893ada 13
+README.md
+  s_e21dbb2078b1a1::t_f18efa37893ada 13-17,39,56,86
+layouts/_partials/appearance.html
+  s_e21dbb2078b1a1::t_f18efa37893ada 3-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bd03ed2dcced9ce9575d3addb7f5a139c860e1f4",
+  "prompts": {},
+  "sessions": {
+    "s_e21dbb2078b1a1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a21d73-d2f2-7832-ae03-9ac1d7f430d7",
+        "model": "gpt-6.2-astra"
+      },
+      "human_author": "Nicholas A. Del Grosso <delgrosso.nick@gmail.com>"
+    }
+  }
+}
