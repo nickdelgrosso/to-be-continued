@@ -43,6 +43,8 @@ for (const path of ["/", "/a-lab/a-project/"]) {
       if (url.hash) assert.ok(readFileSync(file, "utf8").includes(`id="${url.hash.slice(1)}"`), asset);
     }
     for (const [, id] of html.matchAll(/<a\b[^>]*\shref="#([^"]+)"/g)) assert.ok(ids.includes(id), id);
+    const chapters = html.split(/<section id="chapter-/).slice(1);
+    for (const chapter of chapters) assert.equal((chapter.match(/data-quick="/g) || []).length, 1);
     const fields = [...html.matchAll(/<(?:input|textarea)\b[^>]*\sdata-field="([^"]+)"/g)].map(match => match[1]);
     assert.ok(fields.length);
     for (const field of fields) {

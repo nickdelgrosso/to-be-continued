@@ -17,7 +17,7 @@ const guide = {
     subtitle: section.querySelector(".chapter-subtitle").textContent,
     questions: [...section.querySelectorAll("textarea")].map(field => ({
       id: field.dataset.field.slice("answer.".length),
-      text: field.labels[0].textContent,
+      text: field.labels[0].dataset.prompt,
     })),
   })),
 };
@@ -179,6 +179,7 @@ function markCurrent() {
   const top = document.querySelector(".toolbar").getBoundingClientRect().bottom + 40;
   let current = targets[0];
   for (const section of targets) {
+    if (section.hidden) continue;
     if (section.getBoundingClientRect().top > top) break;
     current = section;
   }
@@ -348,6 +349,25 @@ byId("confirm-clear").addEventListener("click", () => {
   announce(saved ? messages.cleared : messages.clearFailed);
 });
 
+const route = byId("route");
+const chapters = [...form.querySelectorAll("[data-chapter]")];
+function applyRoute() {
+  const quick = route.value === "quick";
+  for (const section of chapters) {
+    const questions = [...section.querySelectorAll(".question")];
+    for (const question of questions) {
+      question.hidden = quick && !question.dataset.quick;
+      const label = question.querySelector("label");
+      label.textContent = quick && question.dataset.quick || label.dataset.prompt;
+      resizeField(question.querySelector("textarea"));
+    }
+    section.hidden = questions.every(question => question.hidden);
+    contents.querySelector('a[href="#' + section.id + '"]').hidden = section.hidden;
+  }
+  markCurrent();
+}
+route.addEventListener("change", applyRoute);
+byId("route-picker").hidden = !form.querySelector("[data-quick]");
 restore();
 for (const field of controls.values()) field.readOnly = false;
 for (const button of document.querySelectorAll("[data-js]")) button.disabled = false;

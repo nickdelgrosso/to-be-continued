@@ -11,8 +11,8 @@
   <p class="chapter-intro">{{ .intro }}</p>
   {{ range $id := .questions }}
     {{ with index hugo.Data.guide.questions $id }}
-    <div class="question">
-      <label for="answer-{{ $id }}">{{ .text }}</label>
+    <div class="question"{{ with .quick }} data-quick="{{ . }}"{{ end }}>
+      <label for="answer-{{ $id }}" data-prompt="{{ .text }}">{{ .text }}</label>
       {{ with .help }}<p class="help" id="help-{{ $id }}">{{ . | markdownify }}</p>{{ end }}
       <textarea id="answer-{{ $id }}" data-field="answer.{{ $id }}" rows="4" placeholder="{{ $ui.answerPlaceholder }}" {{ with .help }}aria-describedby="help-{{ $id }}"{{ end }} readonly></textarea>
       {{ if or .example .references }}

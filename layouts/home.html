@@ -47,6 +47,11 @@
             <h2 id="welcome-title">{{ $guide.introduction.title }}</h2>
             {{ range $guide.introduction.paragraphs }}<p>{{ . }}</p>{{ end }}
           </section>
+          <div class="route-picker" id="route-picker" hidden>
+            <label for="route">{{ $ui.routeLabel }}</label>
+            <select id="route" aria-describedby="speed-help"><option value="full">{{ $ui.full }}</option><option value="quick">{{ $ui.speedrun }}</option></select>
+            <p id="speed-help">{{ $ui.speedHelp }}</p>
+          </div>
           <form id="handover" autocomplete="off" data-format-version="{{ $guide.formatVersion }}" data-document-title="{{ $guide.documentTitle }}">
             <section id="project" class="project chapter-target" aria-labelledby="project-heading" tabindex="-1">
               <div class="project-heading">

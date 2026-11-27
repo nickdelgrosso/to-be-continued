@@ -226,3 +226,8 @@ body.dragging .file-drop { outline: 2px dashed var(--color-brick); outline-offse
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+.route-picker { margin-top: 1rem; display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .65rem; }
+.route-picker label { font-weight: 650; }
+select { max-width: 100%; padding: .4rem .65rem; border: 1px solid var(--rule-dark); border-radius: 3px; background: var(--color-surface); color: var(--color-text); font: inherit; }
+.route-picker p { flex-basis: 100%; color: var(--color-text-secondary); font-size: .88rem; }

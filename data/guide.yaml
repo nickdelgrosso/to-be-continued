@@ -109,6 +109,7 @@ questions:
     help: Include a question your analysis can’t answer.
     example: We built this to compare flowering dates across our meadow plots. We only sampled in spring, so it tells us very little about late-flowering species.
   decisions:
+    quick: Which decision would puzzle someone new?
     text: Which decision best explains why the code looks this way?
     references:
       - Link to the change if you have it. Say what you tried first and why you moved on.
@@ -125,6 +126,7 @@ questions:
     references:
       - If a Pixi task, Makefile, Snakemake or Nextflow workflow already describes the sequence, name it and explain the decisions you make around it.
   manual-steps:
+    quick: Which step do you still do by hand?
     text: Which steps do you do by hand?
     example: I compare the station names against the field notebook before merging the tables. Two stations changed names in 2022.
   regular-tools:
@@ -132,6 +134,7 @@ questions:
     help: Flag old scripts that still look current.
 
   first-run:
+    quick: What’s the smallest example someone can run?
     text: How can someone get a first result?
     help: Name a small input they can start with and something they should see when it works.
     references:
@@ -147,6 +150,7 @@ questions:
     text: Which file should someone read first?
     help: A path and a few words about why it matters can save someone an afternoon.
   vocabulary:
+    quick: Which name or unit is easy to misread?
     text: Which names, units or dimensions need explaining?
     example: In the observation array, the second dimension is a repeat visit to the same plot. It is easy to mistake those visits for independent samples.
     references:
@@ -156,6 +160,7 @@ questions:
     help: Point to a sensible starting point and an assumption worth checking first.
 
   trust-checks:
+    quick: What should someone check before trusting a result?
     text: How do you tell whether a result makes sense?
     example: I normally check that the control group shows no systematic response. If it does, I investigate the timestamp preprocessing before changing the analysis.
     references:
@@ -177,5 +182,6 @@ questions:
     text: Which part still feels fragile?
     example: I never managed to establish why the last two plots swap order on some machines. I check their labels against the table by hand.
   hindsight:
+    quick: What do you wish you’d known on day one?
     text: What do you wish you’d known at the start?
     help: This can be about the data, the people or the research itself as much as the code.

@@ -66,3 +66,8 @@ messages:
   unknown: 'This guide no longer contains a field or question in that file. Your draft is unchanged.'
   readFailed: The file could not be opened. Try choosing it again.
   oneFile: Choose one Markdown handover file at a time.
+
+routeLabel: Writing route
+full: Full guide
+speedrun: Speedrun
+speedHelp: One quick prompt per chapter. Switch routes any time to see your other answers.
