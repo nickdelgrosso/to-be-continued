@@ -2,6 +2,5 @@
 <div class="appearance" aria-label="{{ $ui.appearance }}" role="group">
   <label for="persona">{{ $ui.persona }}</label>
   <select id="persona" data-js disabled>{{ range hugo.Data.personas.items }}<option value="{{ .id }}" {{ if eq .id hugo.Data.personas.default }}selected{{ end }} {{ with resources.Get .illustration | fingerprint }}data-art="{{ .RelPermalink }}"{{ end }}>{{ .label }}</option>{{ end }}</select>
-  <label for="colour-mode">{{ $ui.colourMode }}</label>
-  <select id="colour-mode" data-js disabled>{{ range $ui.colourModes }}<option value="{{ .id }}">{{ .label }}</option>{{ end }}</select>
+  {{ partial "colour-mode.html" $ui }}
 </div>

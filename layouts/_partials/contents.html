@@ -20,6 +20,7 @@
       </details>
       <p class="privacy">{{ $ui.privacy }}</p>
       <p class="storage-warning" id="storage-warning" role="status" hidden>{{ $ui.messages.storageHelp }}</p>
+      {{ with site.GetPage "/references" }}<a class="text-button reading-link" href="{{ .RelPermalink }}">{{ partial "icon.html" "book" }}{{ hugo.Data.reading.title }}</a>{{ end }}
       <div class="draft-actions">
         <button class="text-button" type="button" data-action="copy" title="{{ $ui.copyHint }}" data-js disabled>{{ partial "icon.html" "copy" }}{{ $ui.copy }}</button>
         <button class="text-button muted" type="button" data-action="clear" title="{{ $ui.clearHint }}" data-js disabled>{{ partial "icon.html" "erase" }}{{ $ui.clear }}</button>

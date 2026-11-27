@@ -30,4 +30,8 @@
     </div>
     {{ else }}{{ errorf "Unknown question ID %q in data/guide.yaml" $id }}{{ end }}
   {{ end }}
+  {{ $chapter := .id }}
+  {{ with index hugo.Data.reading.groups $chapter }}{{ $group := . }}{{ with site.GetPage "/references" }}
+  <a class="chapter-reading" href="{{ .RelPermalink }}#{{ $chapter }}">{{ partial "icon.html" "book" }}{{ $ui.readingOn }} {{ $group.title }}</a>
+  {{ end }}{{ end }}
 </section>

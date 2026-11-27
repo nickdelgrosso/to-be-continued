@@ -1,0 +1,87 @@
+title: Reading and references
+illustration: field-notebooks.svg
+intro: Pick a question you’re stuck on. These readings show how other researchers have recorded a decision, checked a result or handed over a working example.
+back: Back to the guide
+skip: Skip to readings
+contents: On this page
+imageCredits: Image credits
+groups:
+  story:
+    title: Decisions and people
+    situation: Two methods looked promising. Why did the team keep one, and who remembers the discussion?
+    readings:
+      - title: Documenting Architecture Decisions
+        author: Michael Nygard · Cognitect
+        note: Try the short decision-record format. Write down the choice, what shaped it and what changed as a result.
+        url: https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions
+      - title: CRediT role descriptors
+        author: NISO · Contributor Role Taxonomy
+        note: Use the role descriptions to name who collected data, maintained software or checked results. Ask those people how they would describe their contribution.
+        url: https://credit.niso.org/contributor-roles-defined/
+  lessons:
+    title: Lessons and troubleshooting
+    situation: Someone else has just hit the warning you spent a week tracking down.
+    readings:
+      - title: Debugging
+        author: Software Carpentry · Programming with Python
+        note: The lesson works through small, repeatable failures. Leave the input that triggers yours and a short list of explanations you’ve already ruled out.
+        url: https://swcarpentry.github.io/python-novice-inflammation/11-debugging.html
+      - title: Viewing the Commit History
+        author: Scott Chacon and Ben Straub · Pro Git
+        note: Use the examples of git log to find when a workaround appeared. Link to the commit and add what you remember about the problem that prompted it.
+        url: https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History
+        image: git-mark.svg
+        imageClass: logo
+  verification:
+    title: Trust and responsibility
+    situation: The figure looks plausible. What would make you trust it, and who has a say in how the underlying data are used?
+    readings:
+      - title: Defensive Programming
+        author: Software Carpentry · Programming with Python
+        note: The exercises turn expectations into checks. Pick one condition that should always hold for your data and give an example that would break it.
+        url: https://swcarpentry.github.io/python-novice-inflammation/10-defensive.html
+      - title: The CARE Principles for Indigenous Data Governance
+        author: Global Indigenous Data Alliance
+        note: For work involving Indigenous data, record whose authority governs reuse and where the next researcher can find the community’s terms.
+        url: https://www.gida-global.org/careprinciples
+  workflow:
+    title: The everyday workflow
+    situation: There’s a step between collecting the data and making the plot that only you know how to do.
+    readings:
+      - title: Good enough practices in scientific computing
+        author: Greg Wilson and colleagues · PLOS Computational Biology
+        note: Figure 1 shows one table reshaped for analysis. Use it to think through your own transformations, especially any edits someone makes in a spreadsheet.
+        url: https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510
+        image: tidy-data.png
+        imageAlt: Wide and long versions of the same observations, from Figure 1.
+      - title: An example workflow
+        author: Snakemake tutorial
+        note: Follow a target file back to its inputs. If your project already has a workflow, point to its target and explain where a person still has to make a choice.
+        url: https://snakemake.readthedocs.io/en/stable/tutorial/basics.html
+  internals:
+    title: Names, units and assumptions
+    situation: A column looks like a count, but one of its values means the instrument missed a reading.
+    readings:
+      - title: Table Schema
+        author: Frictionless Data · Data Package Standard
+        note: Look at field descriptions and missing-value codes. Write down what a value means in your study, with one real or made-up example.
+        url: https://datapackage.org/standard/table-schema/
+      - title: In-code documentation
+        author: CodeRefinery
+        note: The docstring examples cover arguments and return values. Point your colleague to the relevant function and explain any assumption they need before changing it.
+        url: https://coderefinery.github.io/documentation/in-code-documentation/
+  setup:
+    title: A first successful run
+    situation: A colleague has a fresh checkout and ten minutes. What can they run and recognise?
+    readings:
+      - title: Writing good README files
+        author: CodeRefinery
+        note: Use the README exercise to check whether a newcomer can find installation and usage instructions. Link to the working example in your handover.
+        url: https://coderefinery.github.io/documentation/writing-readme-files/
+      - title: Lock File
+        author: Pixi documentation
+        note: If your project uses Pixi, its lock file records the resolved environment. Name the version you used and any local data or equipment needed for the first run.
+        url: https://pixi.prefix.dev/latest/workspace/lock_file/
+credits:
+  - 'Git logo by Jason Long. [Original artwork](https://git-scm.com/community/logos) · [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).'
+  - 'Table thumbnail from Figure 1 of *Good enough practices in scientific computing* by Greg Wilson, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt and Tracy K. Teal (2017). [Original figure](https://doi.org/10.1371/journal.pcbi.1005510.g001) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).'

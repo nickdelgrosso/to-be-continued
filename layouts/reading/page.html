@@ -1,0 +1,55 @@
+{{- $reading := hugo.Data.reading -}}
+{{- $guide := hugo.Data.guide -}}
+{{- $ui := hugo.Data.interface -}}
+<!doctype html>
+<html lang="en">
+<head>
+  {{ partial "head.html" (dict "title" (printf "%s · %s" $reading.title site.Title) "description" $reading.intro "script" "js/reading.mjs" "target" "reading.js") }}
+</head>
+<body data-base-path="{{ site.Home.RelPermalink }}">
+  <a class="skip-link" href="#readings">{{ $reading.skip }}</a>
+  <header class="toolbar">
+    <div class="wrap toolbar-inner">
+      <a class="brand reading-brand" href="{{ site.Home.RelPermalink }}"><span class="brand-mark">{{ partial "icon.html" "book" }}</span><span>{{ site.Title }}</span></a>
+      <a class="button return-guide" href="{{ site.Home.RelPermalink }}#workspace">{{ $reading.back }}</a>
+    </div>
+  </header>
+  <main class="wrap" id="readings">
+    <div class="title-page reading-title">
+      <div class="title-copy">
+        <p class="eyebrow title-kicker">{{ $ui.subtitle }}</p>
+        <h1>{{ $reading.title }}</h1>
+        <p class="reading-intro">{{ $reading.intro }}</p>
+        <div class="appearance">{{ partial "colour-mode.html" $ui }}</div>
+      </div>
+      {{ with resources.Get $reading.illustration | fingerprint }}<img class="cover-art" alt="" width="300" height="170" src="{{ .RelPermalink }}">{{ end }}
+    </div>
+    <div class="spread">
+      <nav class="margin-column reading-nav" aria-labelledby="reading-contents"><h2 id="reading-contents">{{ $reading.contents }}</h2>
+        {{ range $chapter := $guide.chapters }}{{ with index $reading.groups $chapter.id }}<a class="contents-link" href="#{{ $chapter.id }}">{{ .title }}</a>{{ end }}{{ end }}
+      </nav>
+      <div class="pages">
+        {{ range $chapter := $guide.chapters }}{{ with index $reading.groups $chapter.id }}
+        <section class="reading-group chapter" data-accent="{{ $chapter.accent }}" id="{{ $chapter.id }}">
+          <div class="chapter-heading">{{ with $chapter.icon }}<span class="chapter-symbol">{{ partial "icon.html" . }}</span>{{ end }}<h2>{{ .title }}</h2></div>
+          <p class="reading-situation">{{ .situation }}</p>
+          <ul class="reading-list">
+            {{ range .readings }}
+            <li>
+              <div>
+                <h3><a href="{{ .url }}" rel="noreferrer">{{ .title }}</a></h3>
+                <p class="reading-author">{{ .author }}</p>
+                <p>{{ .note }}</p>
+              </div>
+              {{ $item := . }}{{ with .image }}{{ with resources.Get . | fingerprint }}<img class="reading-thumb {{ $item.imageClass }}" loading="lazy" src="{{ .RelPermalink }}" alt="{{ $item.imageAlt | default "" }}">{{ end }}{{ end }}
+            </li>
+            {{ end }}
+          </ul>
+        </section>
+        {{ end }}{{ end }}
+        <footer class="reading-credits"><h2>{{ $reading.imageCredits }}</h2>{{ range $reading.credits }}<p>{{ . | markdownify }}</p>{{ end }}</footer>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

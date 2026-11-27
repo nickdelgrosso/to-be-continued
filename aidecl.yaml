@@ -11,7 +11,7 @@ ai_usage:
     questions, visual direction and a reference answer. The requester directed
     changes to the form, file interchange and deployment targets. OpenAI Codex
     implemented the site, wrote the alternate persona prompts and examples, drew the
-    SVG illustrations, wrote the documentation and pipelines, and ran software
+    original SVG illustrations, researched and annotated the reading list, wrote the documentation and pipelines, and ran software
     and browser checks. Researchers write their own handover responses.
   tools:
     - name: OpenAI Codex

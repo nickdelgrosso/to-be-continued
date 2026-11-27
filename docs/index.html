@@ -76,6 +76,7 @@ pixi run build</code></pre>
         <dl>
           <dt><code>data/guide.yaml</code> and <code>data/interface.yaml</code></dt>
           <dd>The first file owns the chapters, question bank, project fields, introduction and interchange version. The second owns navigation labels, prompts for operating the interface and status messages.</dd>
+          <dt><code>data/reading.yaml</code> and <code>content/references.md</code></dt><dd>The content file establishes the public route. The YAML holds the reading list, situations, attribution and local thumbnail names. Match each group to a stable chapter ID. Use primary sources, check the destination and asset licence, and keep source and licence links in the image credits. The reading page shares the main site’s colour preference and never opens the draft store.</dd>
           <dt><code>layouts/home.html</code> and <code>layouts/_partials/</code></dt>
           <dd>The templates build semantic HTML from those files. The chapter partial resolves IDs from the question bank. Global assets use Hugo resource permalinks so deployments under a project path load correctly.</dd>
           <dt><code>assets/js/app.mjs</code></dt>
@@ -127,7 +128,7 @@ pixi run build</code></pre>
       <section id="release">
         <h2>Publishing and attribution</h2>
         <p>GitLab uses <code>.gitlab-ci.yml</code> and <code>CI_PAGES_URL</code>. GitHub uses <code>.github/workflows/pages.yml</code> and the base URL returned by its Pages configuration action. Both run the Pixi tests and use the production build on the default branch. Only <code>public/</code> is selected for deployment.</p>
-        <p>Keep developer material under <code>docs/</code>. Adding it to the main site’s <code>static/</code>, <code>content/</code> or asset pipeline would publish it. The production tests check that the generated site contains only the questionnaire HTML page.</p>
+        <p>Keep developer material under <code>docs/</code>. Adding it to the main site’s <code>static/</code>, <code>content/</code> or asset pipeline would publish it. The production tests check that the generated site contains exactly the questionnaire and its public reading page.</p>
         <p>The repository’s <code>LICENSE</code> covers the MIT-licensed site and illustrations. The team records AI involvement in <code>aidecl.yaml</code>. When that involvement changes, update the declaration and check it with <code>aidecl validate aidecl.yaml</code>. Researchers retain ownership of their exported notes.</p>
       </section>
       <a href="#purpose">Return to the beginning</a>

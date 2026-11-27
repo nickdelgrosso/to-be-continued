@@ -3,14 +3,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{{ $ui.subtitle }}. {{ $ui.tagline }}">
-  {{ if hugo.IsProduction }}<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">{{ end }}
-  <title>{{ site.Title }} — {{ $ui.subtitle }}</title>
-  {{ with resources.Get "favicon.svg" | fingerprint }}<link rel="icon" type="image/svg+xml" href="{{ .RelPermalink }}">{{ end }}
-  {{ with resources.Get "guide.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ .RelPermalink }}">{{ end }}
-  {{ with resources.Get "js/app.mjs" | js.Build (dict "targetPath" "guide.js" "target" "es2020" "minify" hugo.IsProduction) | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
+  {{ partial "head.html" (dict "title" (printf "%s — %s" site.Title $ui.subtitle) "description" (printf "%s. %s" $ui.subtitle $ui.tagline) "script" "js/app.mjs" "target" "guide.js") }}
 </head>
 <body id="top" data-base-path="{{ .RelPermalink }}">
   <a class="skip-link" href="#workspace">{{ $ui.skip }}</a>

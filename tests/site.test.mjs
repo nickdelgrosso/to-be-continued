@@ -10,7 +10,7 @@ const source = fileURLToPath(new URL("../", import.meta.url));
 let scratch;
 before(() => {
   scratch = mkdtempDisposableSync(join(tmpdir(), "to-be-continued-test-"));
-  for (const item of ["assets", "data", "docs", "layouts", "static", "hugo.toml"]) {
+  for (const item of ["assets", "content", "data", "docs", "layouts", "static", "hugo.toml"]) {
     cpSync(join(source, item), join(scratch.path, item), { recursive: true });
   }
 });
@@ -28,7 +28,13 @@ for (const path of ["/", "/a-lab/a-project/"]) {
     assert.ok(html.includes(`data-base-path="${path}"`));
     assert.ok(html.includes("connect-src 'none'"));
     const published = readdirSync(join(scratch.path, "public"), { recursive: true });
-    assert.deepEqual(published.filter(file => file.endsWith(".html")), ["index.html"]);
+    assert.deepEqual(published.filter(file => file.endsWith(".html")).sort(), ["index.html", join("references", "index.html")]);
+    const reading = readFileSync(join(scratch.path, "public", "references", "index.html"), "utf8");
+    assert.ok(html.includes('href="' + path + 'references/"'));
+    assert.ok(reading.includes('href="' + path + '#workspace"'));
+    assert.ok(reading.includes("CC BY 4.0"));
+    for (const [, id] of reading.matchAll(/href="#([^"]+)"/g)) assert.ok(reading.includes('id="' + id + '"'));
+    for (const [, id] of html.matchAll(/references\/#([^"]+)"/g)) assert.ok(reading.includes('id="' + id + '"'));
     assert.ok(!published.includes("docs"));
     const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
     assert.equal(ids.length, new Set(ids).size, "IDs, including every featured question, must be unique");
@@ -38,7 +44,7 @@ for (const path of ["/", "/a-lab/a-project/"]) {
       assert.ok(html.includes('value="' + persona.id + '"'));
       assert.ok(persona.illustration);
     }
-    const assets = [...html.matchAll(/<(?:link|script|img|use)\b[^>]*?\s(?:src|href)="([^"]+)"/g)];
+    const assets = [...(html + reading).matchAll(/<(?:link|script|img|use)\b[^>]*?\s(?:src|href)="([^"]+)"/g)];
     assert.ok(assets.length > 0);
     for (const [, asset] of assets) {
       const url = new URL(asset.replaceAll("&amp;", "&"), base);

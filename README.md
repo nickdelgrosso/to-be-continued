@@ -6,7 +6,7 @@
 
 You know which notebook to open first, why one approach was abandoned and what a trustworthy result looks like. This single-page field guide helps you leave those details for a colleague or your future self.
 
-**[Open the field guide](https://nickdelgrosso.github.io/to-be-continued/)**
+**[Open the field guide](https://nickdelgrosso.github.io/to-be-continued/)** · [Reading and references](https://nickdelgrosso.github.io/to-be-continued/references/)
 
 ### Write a handover
 
@@ -47,7 +47,7 @@ Edit **`data/guide.yaml`**. Set `quick` on a prompt to feature it in Speedrun an
 
 For example, a discussion about the first successful run might move `first-run` into the everyday workflow chapter. Move that one list entry and reload the guide. You can also change its question text during the discussion without moving the answer. The six starting chapters are prompts for iteration with researchers.
 
-The available accents are `mustard`, `orange`, `olive`, `tobacco`, `brick` and `brown`. The chapter symbols are `book`, `cup`, `key`, `compass`, `shield` and `notebook`. A chapter can omit its symbol. Operational labels, dialog text and feedback are in `data/interface.yaml`. The layouts render the data. Browser behavior lives in `assets/js/`, and the type, colors and spacing live in `assets/guide.css`.
+The available accents are `mustard`, `orange`, `olive`, `tobacco`, `brick` and `brown`. The chapter symbols are `book`, `cup`, `key`, `compass`, `shield` and `notebook`. A chapter can omit its symbol. Edit the reading list, example situations and image credits in `data/reading.yaml`. Groups share stable chapter IDs with the guide. Operational labels, dialog text and feedback are in `data/interface.yaml`. The layouts render the data. Browser behavior lives in `assets/js/`, and the type, colors and spacing live in `assets/guide.css`.
 
 ## Save and reopen a handover
 
@@ -85,4 +85,4 @@ pixi run build --baseURL https://example.org/lab/field-guide/
 
 The published files use the local stylesheet, illustrations and JavaScript. Hugo bundles Marked and DOMPurify from the checked-in copies in `assets/vendor/`. Their licences and package versions are in `static/third-party/`. Questionnaire answers, uploaded files and clipboard operations stay client-side. The production page also sets a content security policy that disables outgoing connections and form submissions.
 
-The site source and original illustrations are available under the [MIT license](LICENSE). The repository records Codex’s contributions in [aidecl.yaml](aidecl.yaml) using the [AI Declaration Format](https://ai-declaration.org/).
+The reading page credits the separately licensed Git logo and research figure. The site source and original illustrations are available under the [MIT license](LICENSE). The repository records Codex’s contributions in [aidecl.yaml](aidecl.yaml) using the [AI Declaration Format](https://ai-declaration.org/).
