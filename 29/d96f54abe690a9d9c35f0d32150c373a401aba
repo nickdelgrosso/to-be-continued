@@ -1,0 +1,31 @@
+assets/js/app.mjs
+  s_e21dbb2078b1a1::t_50420d78f9dce5 20,182,352-370
+data/interface.yaml
+  s_e21dbb2078b1a1::t_50420d78f9dce5 69-73
+layouts/_partials/chapter.html
+  s_e21dbb2078b1a1::t_50420d78f9dce5 14-15
+data/guide.yaml
+  s_e21dbb2078b1a1::t_50420d78f9dce5 112,129,137,153,163,185
+tests/site.test.mjs
+  s_e21dbb2078b1a1::t_50420d78f9dce5 46-47
+assets/guide.css
+  s_e21dbb2078b1a1::t_50420d78f9dce5 229-233
+layouts/home.html
+  s_e21dbb2078b1a1::t_50420d78f9dce5 50-54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "29d96f54abe690a9d9c35f0d32150c373a401aba",
+  "prompts": {},
+  "sessions": {
+    "s_e21dbb2078b1a1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a21d73-d2f2-7832-ae03-9ac1d7f430d7",
+        "model": "gpt-6.2-astra"
+      },
+      "human_author": "Nicholas A. Del Grosso <delgrosso.nick@gmail.com>"
+    }
+  }
+}
