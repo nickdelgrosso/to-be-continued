@@ -28,6 +28,12 @@
     <p>{{ .uploadHelp }}</p>
     <button type="button" class="file-drop" id="choose-file" autofocus>{{ partial "icon.html" "upload" }}<strong>{{ .chooseFile }}</strong><span>{{ .dropHint }}</span></button>
     <input id="upload-file" type="file" accept=".md,.markdown,text/markdown,text/plain" hidden>
+    <details class="paste-box" id="paste-box"><summary>{{ .pasteLabel }}</summary>
+      <label for="paste-source">{{ .pasteLabel }}</label>
+      <p id="paste-hint">{{ .pasteHint }}</p>
+      <textarea id="paste-source" aria-describedby="paste-hint" spellcheck="false" rows="5"></textarea>
+      <button type="button" class="button" id="open-paste">{{ .pasteOpen }}</button>
+    </details>
     <p class="dialog-message" id="upload-error" role="alert"></p>
     <div class="dialog-actions"><button type="button" class="button" data-close>{{ .close }}</button></div>
   </div>

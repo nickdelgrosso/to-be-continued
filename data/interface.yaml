@@ -36,8 +36,11 @@ close: Close
 clearTitle: Clear this draft?
 clearHelp: This removes the project details and responses saved for this guide in this browser. Export a copy first if you want to keep them.
 keep: Keep writing
+pasteLabel: Paste exported Markdown
+pasteHint: Include the header with handover_version and question_order.
+pasteOpen: Open pasted handover
 uploadTitle: Open a handover
-uploadHelp: Choose a Markdown file previously exported from this guide. The file is read on this device.
+uploadHelp: Choose a HANDOVER.md you exported from this guide, drop it here or paste its contents.
 chooseFile: Choose HANDOVER.md
 dropHint: or drop it here
 dropOverlay: Drop your handover to open it
@@ -67,6 +70,7 @@ messages:
   invalid: 'The handover could not be read. Check that the header, question headings and dividing lines are intact. Your draft is unchanged.'
   unknown: 'This guide no longer contains a field or question in that file. Your draft is unchanged.'
   readFailed: The file could not be opened. Try choosing it again.
+  pastedName: Pasted HANDOVER.md
   oneFile: Choose one Markdown handover file at a time.
 
 routeLabel: Writing route

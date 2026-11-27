@@ -245,22 +245,34 @@ async function readFiles(files) {
   }
   const file = files[0];
   try {
-    const values = fromMarkdown(guide, await file.text());
+    const source = await file.text();
     if (attempt !== readNumber || !uploadDialog.open) return;
-    uploadDialog.close();
-    if (valuesOnPage().size || storedFields || byId("state-dot").dataset.state === "unavailable") {
-      pendingImport = values;
-      byId("import-name").textContent = file.name;
-      replaceDialog.showModal();
-    } else {
-      openImported(values);
-    }
+    acceptSource(source, file.name);
   } catch (failure) {
     if (attempt !== readNumber || !uploadDialog.open) return;
-    error.textContent = failure instanceof ImportError ?
-      messages[failure.code].replace("{expected}", guide.version).replace("{found}", () => failure.detail) : messages.readFailed;
+    showImportError(failure);
   }
 }
+function showImportError(failure) {
+  byId("upload-error").textContent = failure instanceof ImportError ?
+    messages[failure.code].replace("{expected}", guide.version).replace("{found}", () => failure.detail) : messages.readFailed;
+}
+function acceptSource(source, name) {
+  const values = fromMarkdown(guide, source);
+  uploadDialog.close();
+  if (valuesOnPage().size || storedFields || byId("state-dot").dataset.state === "unavailable") {
+    pendingImport = values;
+    byId("import-name").textContent = name;
+    replaceDialog.showModal();
+  } else {
+    openImported(values);
+  }
+}
+byId("open-paste").addEventListener("click", () => {
+  readNumber++;
+  try { acceptSource(byId("paste-source").value, messages.pastedName); }
+  catch (failure) { showImportError(failure); }
+});
 byId("choose-file").addEventListener("click", () => fileInput.click());
 fileInput.addEventListener("change", () => {
   if (fileInput.files.length) readFiles([...fileInput.files]);
@@ -272,7 +284,11 @@ byId("confirm-replace").addEventListener("click", () => {
   openImported(values);
 });
 replaceDialog.addEventListener("close", () => { pendingImport = undefined; });
-uploadDialog.addEventListener("close", () => { if (!uploadDialog.open) readNumber++; });
+uploadDialog.addEventListener("close", () => { if (!uploadDialog.open) {
+    readNumber++;
+    byId("paste-source").value = "";
+    byId("paste-box").open = false;
+  } });
 
 let dragDepth = 0;
 function resetDrag() {

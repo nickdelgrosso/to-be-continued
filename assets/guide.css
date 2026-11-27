@@ -243,3 +243,9 @@ select { max-width: 100%; padding: .4rem .65rem; border: 1px solid var(--rule-da
 
 .speedrun .chapter-intro, .speedrun .chapter-subtitle, .speedrun .question .help { display: none; }
 .speedrun .question { margin-top: .75rem; }
+
+.paste-box { margin-top: 1rem; }
+.paste-box label { display: block; margin-top: .75rem; font-weight: 600; }
+.paste-box p { color: var(--color-text-secondary); font-size: .88rem; margin: .25rem 0; }
+.paste-box textarea { font: .85rem/1.4 var(--font-code); max-height: 12rem; }
+.paste-box button { margin-top: .5rem; }
