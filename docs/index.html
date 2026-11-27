@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Developer guide · To Be Continued.</title>
+  <style>
+    :root { color-scheme: light; --ink: #30261d; --muted: #69543d; --line: #c8b597; --brick: #813928; }
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 1rem; }
+    body { margin: 0; background: #fff8ea; color: var(--ink); font: 1rem/1.65 system-ui, sans-serif; }
+    header, main { width: min(72rem, 92%); margin-inline: auto; }
+    header { padding: 2rem 0 1.35rem; border-bottom: 4px double var(--line); }
+    header p { margin: 0; color: var(--brick); font-weight: 600; }
+    h1, h2, h3 { font-family: Georgia, serif; line-height: 1.18; }
+    h1 { margin: .35rem 0 0; font-size: clamp(2.2rem, 5vw, 3.35rem); }
+    h2 { font-size: 1.8rem; margin: 0; }
+    h3 { margin-bottom: .2rem; font-size: 1.25rem; }
+    main { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: clamp(1.5rem, 5vw, 5rem); padding: 1.65rem 0 3rem; }
+    article { max-width: 48rem; min-width: 0; }
+    section { border-bottom: 1px solid var(--line); margin-bottom: 1.65rem; padding-bottom: .65rem; }
+    nav { align-self: start; position: sticky; top: 1rem; }
+    nav h2 { font-size: 1.25rem; }
+    nav ul { list-style: none; padding: 0; }
+    nav a { display: inline-block; padding-block: .25rem; }
+    a { color: var(--brick); text-underline-offset: .2em; }
+    :focus-visible { outline: 3px solid var(--brick); outline-offset: 3px; }
+    p, ul, ol, dl { margin-block: .65rem 1rem; }
+    li + li { margin-top: .32rem; }
+    dt { margin-top: .8rem; font-weight: 650; }
+    dd { margin: .15rem 0 .65rem; color: var(--muted); }
+    pre { padding: .9rem; border-left: 3px solid #a98c65; background: #f5e8ce; }
+    code, pre { font: .95em/1.5 ui-monospace, Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .skip { position: absolute; left: -200vw; }
+    .skip:focus { left: .5rem; top: .5rem; background: white; }
+    @media (max-width: 48rem) { main { display: block; } nav { position: static; margin-bottom: 1.4rem; } nav ul { display: flex; flex-wrap: wrap; gap: .1rem 1rem; } nav li + li { margin: 0; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#purpose">Skip to developer guide</a>
+  <header><p>To Be Continued.</p><h1>Developer guide</h1></header>
+  <main>
+    <nav aria-label="Contents">
+      <h2>Contents</h2>
+      <ul>
+        <li><a href="#purpose">Purpose and boundaries</a></li>
+        <li><a href="#start">Working locally</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#questions">Regrouping questions</a></li>
+        <li><a href="#drafts">Drafts and privacy</a></li>
+        <li><a href="#interchange">Markdown interchange</a></li>
+        <li><a href="#verification">Verifying changes</a></li>
+        <li><a href="#release">Publishing and attribution</a></li>
+      </ul>
+    </nav>
+    <article>
+      <section id="purpose">
+        <h2>Purpose and boundaries</h2>
+        <p>The guide helps someone continue a research project after the person who wrote its code has moved on. A useful answer might identify a trusted figure, a manual step, an abandoned method or an unresolved question. A few honest notes are a successful handover.</p>
+        <p>Keep writing on one page, allow questions in any order, and let the researcher export from anywhere. The Write and Preview tabs use the same draft. A realistic project may have a notebook and some data files, with no package, version history or tests of its own.</p>
+        <p>For a new development session, read the relevant section here, inspect the corresponding source, and run the locked tests. The project’s source of truth for the questionnaire is <code>data/guide.yaml</code>. A researcher’s exported <code>HANDOVER.md</code> is research context.</p>
+      </section>
+      <section id="start">
+        <h2>Working locally</h2>
+        <pre><code>pixi install --locked
+pixi run serve
+pixi run docs
+pixi run test
+pixi run build</code></pre>
+        <p>Use separate terminals for the site and documentation servers. The guide runs on port 1313 and these docs on port 1314. Both commands serve from memory. The production build writes to <code>public/</code>. Pixi supplies Hugo, Node.js and the GitHub CLI for all supported platforms.</p>
+        <p>This page is ordinary HTML and can also be opened directly from <code>docs/index.html</code>. The small Hugo configuration in <code>docs/</code> serves only this page. The main Hugo project and both deployment jobs publish the researcher-facing site.</p>
+      </section>
+      <section id="architecture">
+        <h2>Architecture</h2>
+        <p>Hugo reads the YAML and renders a complete, labelled form. At page load, the browser reads the stable field IDs, labels and chapter order from that form. The preview, clipboard and download all call the same Markdown writer.</p>
+        <dl>
+          <dt><code>data/guide.yaml</code> and <code>data/interface.yaml</code></dt>
+          <dd>The first file owns the chapters, question bank, project fields, introduction and interchange version. The second owns navigation labels, prompts for operating the interface and status messages.</dd>
+          <dt><code>layouts/home.html</code> and <code>layouts/_partials/</code></dt>
+          <dd>The templates build semantic HTML from those files. The chapter partial resolves IDs from the question bank. Global assets use Hugo resource permalinks so deployments under a project path load correctly.</dd>
+          <dt><code>assets/js/app.mjs</code></dt>
+          <dd>Connects the controls to draft storage and file operations. It manages tab and chapter navigation, confirmation dialogs, drag-and-drop and accessible feedback.</dd>
+          <dt><code>assets/js/markdown.mjs</code></dt>
+          <dd>Converts a guide and a map of field values to deterministic Markdown, and parses a versioned file back into values. This module runs independently of the browser.</dd>
+          <dt><code>assets/js/draft.mjs</code> and <code>assets/js/files.mjs</code></dt>
+          <dd>The draft store reads and writes browser storage. File helpers copy text, display raw Markdown and download a UTF-8 blob. The application keeps all three operations local.</dd>
+          <dt><code>assets/guide.css</code> and <code>assets/*.svg</code></dt>
+          <dd>The stylesheet defines notebook colors, typography, focus indicators, writing surfaces and responsive navigation. The book illustration, chapter symbols and favicon are local assets.</dd>
+        </dl>
+      </section>
+      <section id="questions">
+        <h2>Regrouping questions</h2>
+        <p>During a workshop, move a question by cutting its ID from one chapter’s <code>questions</code> list and pasting it into another. The question bank contains its wording once. An answer is keyed by question ID, so moving or rewording the question preserves its connection to the draft.</p>
+        <ol>
+          <li>For a new prompt, add a fresh ID in the question bank with its <code>text</code>. Add <code>help</code>, an <code>example</code> or a list of <code>references</code> when they help someone answer.</li>
+          <li>List the ID once in the desired chapter. Use lowercase, hyphen-separated IDs. Give a genuinely different research question a new ID.</li>
+          <li>Set the chapter’s characterful <code>title</code> and a descriptive <code>subtitle</code>. The subtitle appears as a heading in the exported document. The order in YAML drives both the form and the document.</li>
+          <li>To set a question aside, remove it from the chapter list. Ordinary edits retain its stored answer. Relisting its ID makes the answer visible again.</li>
+        </ol>
+        <p>When retiring an answered question permanently, consider how people with existing files will recover their work. The importer reports an unknown question before applying any changes. Their original Markdown contains the full answer.</p>
+      </section>
+      <section id="drafts">
+        <h2>Drafts and privacy</h2>
+        <p>The storage key includes a namespace, storage version and deployment path. Within the stored object, <code>project.</code> prefixes metadata and <code>answer.</code> prefixes question IDs. A normal edit reads the latest draft and patches the edited fields. A confirmed replacement writes one complete snapshot.</p>
+        <p>Keep raw input intact. Whitespace determines whether a response has content, but the writer keeps the original text for every included response. A failed write leaves the edits in memory and displays a warning. A later successful write retries pending edits. Export remains available while storage is blocked.</p>
+        <p>Use text nodes or control values for researcher input. The production page restricts network connections and form submission. An upload reads a local file and parses it fully before asking to replace an existing draft.</p>
+      </section>
+      <section id="interchange">
+        <h2>Markdown interchange</h2>
+        <p>The exporter writes a short YAML header followed by the project metadata and answered questions. <code>handover_version</code> identifies the interchange format and <code>question_order</code> identifies the responses in body order. Each answer appears once as ordinary Markdown. Stable IDs let a later form use newer wording or a different grouping.</p>
+        <p>Thematic breaks separate answer records. The writer chooses a break length absent from the answer text. The reader looks for that break before a question heading, so a researcher’s own headings, code blocks and dividers survive a round trip. Import accepts UTF-8 files with a byte-order mark and Windows line endings.</p>
+        <p>Change <code>formatVersion</code> for incompatible changes to the interchange contract. Regrouping alone needs no version bump. A supported file can be edited by hand if its record order, headings, boundaries and header stay intact. On a version mismatch, report the file’s version and the expected version, and keep the current draft available.</p>
+      </section>
+      <section id="verification">
+        <h2>Verifying changes</h2>
+        <p><code>pixi run test</code> uses Node’s built-in test runner. The fixtures deliberately have different question counts from the live form. Build tests exercise the current site at a root URL and a nested URL, verify form labels and anchors, and build an alternative grouping.</p>
+        <ul>
+          <li>For a format change, test omissions, leading and trailing whitespace, multiline code, ordinary hand edits, uploads after regrouping and rejection of incompatible files.</li>
+          <li>For a storage or interaction change, try a real reload, denied storage, a failed clipboard write, cancellation, download and opening the downloaded file through both upload paths.</li>
+          <li>For a layout change, check keyboard focus, the tab arrow keys, mobile chapter links, the persistent export control and horizontal reflow at 320 CSS pixels.</li>
+        </ul>
+        <p>Keep edits to workshop questions independent of the layouts and JavaScript. Preserve stable IDs and add a small regression test when a change exposes an untested failure.</p>
+      </section>
+      <section id="release">
+        <h2>Publishing and attribution</h2>
+        <p>GitLab uses <code>.gitlab-ci.yml</code> and <code>CI_PAGES_URL</code>. GitHub uses <code>.github/workflows/pages.yml</code> and the base URL returned by its Pages configuration action. Both run the Pixi tests and use the production build on the default branch. Only <code>public/</code> is selected for deployment.</p>
+        <p>Keep developer material under <code>docs/</code>. Adding it to the main site’s <code>static/</code>, <code>content/</code> or asset pipeline would publish it. The production tests check that the generated site contains only the questionnaire HTML page.</p>
+        <p>The repository’s <code>LICENSE</code> covers the MIT-licensed site and illustrations. The team records AI involvement in <code>aidecl.yaml</code>. When that involvement changes, update the declaration and check it with <code>aidecl validate aidecl.yaml</code>. Researchers retain ownership of their exported notes.</p>
+      </section>
+      <a href="#purpose">Return to the beginning</a>
+    </article>
+  </main>
+</body>
+</html>

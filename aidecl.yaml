@@ -1,0 +1,36 @@
+schema_version: "1.0.0"
+project:
+  name: To Be Continued.
+  version: "0.1.0"
+  content_type: software
+  license: MIT
+ai_usage:
+  used: true
+  summary: >-
+    The project brief supplied the purpose, six chapter themes, twenty starting
+    questions, visual direction and a reference answer. The requester directed
+    changes to the form, file interchange and deployment targets. OpenAI Codex
+    implemented the site, drafted additional guidance and examples, drew the
+    SVG illustrations, wrote the documentation and pipelines, and ran software
+    and browser checks. Researchers write their own handover responses.
+  tools:
+    - name: OpenAI Codex
+      vendor: OpenAI
+      type: agent
+      hosting: cloud_vendor
+      purpose:
+        - Implement the form, versioned Markdown interchange and local storage.
+        - Draft field notes, examples, documentation and original illustrations.
+        - Configure and verify the build, tests and deployment workflows.
+  activities:
+    - code_generation
+    - content_drafting
+    - documentation
+    - testing
+    - debugging
+    - infrastructure
+  ai_proportion:
+    qualitative: mostly_ai
+declaration:
+  date: "2026-11-27"
+  declared_by: "Project Team: Nicholas A. Del Grosso, Jeremy Cohen, Hajer Karoui, Andrew Whittington, Per Hammer."

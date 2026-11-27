@@ -1,0 +1,25 @@
+{{ $ui := hugo.Data.interface }}
+<aside id="contents" class="margin-column" aria-label="{{ $ui.contents }}" tabindex="-1">
+  <div class="margin-inner">
+    <details class="contents" id="contents-list" open>
+      <summary><span>{{ partial "icon.html" "list" }}{{ $ui.contents }}</span>{{ partial "icon.html" "chevron" }}</summary>
+      <nav aria-label="{{ $ui.contents }}">
+        <a href="#project" class="contents-link" aria-current="location"><span class="folio project-folio">{{ partial "icon.html" "folder" }}</span><span>{{ .project.title }}</span></a>
+        {{ range .chapters }}
+        <a href="#chapter-{{ .id }}" class="contents-link" data-accent="{{ .accent }}"><span class="folio">{{ .number }}</span><span>{{ .title }}</span></a>
+        {{ end }}
+      </nav>
+    </details>
+    <div class="draft-tools">
+      <h2>{{ $ui.draft }}</h2>
+      <p class="save-line"><span id="state-dot" aria-hidden="true"></span><span id="save-state" role="status">{{ $ui.messages.local }}</span></p>
+      <p id="response-count">{{ $ui.messages.zero }}</p>
+      <p class="privacy">{{ $ui.privacy }}</p>
+      <p class="storage-warning" id="storage-warning" role="status" hidden>{{ $ui.messages.storageHelp }}</p>
+      <div class="draft-actions">
+        <button class="text-button" type="button" data-action="copy" data-js disabled>{{ partial "icon.html" "copy" }}{{ $ui.copy }}</button>
+        <button class="text-button muted" type="button" data-action="clear" data-js disabled>{{ partial "icon.html" "erase" }}{{ $ui.clear }}</button>
+      </div>
+    </div>
+  </div>
+</aside>

@@ -1,0 +1,64 @@
+subtitle: A field guide to research code handover
+tagline: What you know is worth passing on.
+skip: Skip to the handover form
+home: Return to the title page
+views: Handover views
+write: Write
+preview: Preview
+previewTitle: Markdown preview
+previewLabel: Preview Markdown
+previewHelp: This is the text that goes into your file. Return to Write to make changes.
+upload: Upload File
+export: Export HANDOVER.md
+filename: HANDOVER.md
+contents: Contents
+chapter: Chapter
+optional: All fields optional
+notes: Field notes
+example: Example response
+answerPlaceholder: Write your response…
+draft: Your handover
+privacy: Your words stay in this browser. Export a copy to keep them.
+copy: Copy Markdown
+clear: Clear responses
+back: Back to contents
+noScript: Turn on JavaScript to write, save, import and export a handover. You can read all the questions below.
+exportTitle: Export your handover
+destination: Place this file alongside your research code. You or another researcher can read, revise and extend it later.
+privacyReminder: Leave out passwords, credentials, confidential personal information and anything that should stay out of your repository.
+download: Download HANDOVER.md
+cancel: Cancel
+close: Close
+clearTitle: Clear this draft?
+clearHelp: This removes the project details and responses saved for this guide in this browser. Export a copy first if you want to keep them.
+keep: Keep writing
+uploadTitle: Open a handover
+uploadHelp: Choose a Markdown file previously exported from this guide. The file is read on this device.
+chooseFile: Choose HANDOVER.md
+dropHint: or drop it here
+dropOverlay: Drop your handover to open it
+replaceTitle: Replace this draft?
+replaceHelp: Opening this file will replace the project details and responses in this browser. Export your current draft first if you want to keep it.
+replace: Replace draft
+messages:
+  local: Local draft
+  saved: Saved in this browser
+  unavailable: Browser saving unavailable
+  storageHelp: This browser could not save or restore all of your draft. Export a copy before closing this page.
+  zero: No responses yet
+  one: 1 response written
+  many: '{count} responses written'
+  downloaded: Download started for HANDOVER.md.
+  downloadFailed: The download could not start. Use Copy Markdown to keep a copy.
+  copied: Markdown copied.
+  copyManually: Select and copy the text in the Markdown preview using your device’s copy command.
+  cleared: Draft cleared.
+  clearFailed: The form was cleared here. Browser storage could not be cleared.
+  imported: Handover opened.
+  importedUnsaved: Handover opened on this page. Export a copy before closing it.
+  version: 'This file uses handover format {found}. This guide reads format {expected}. Your draft is unchanged.'
+  unversioned: 'This file has no handover format version. Choose a HANDOVER.md exported from this guide. Your draft is unchanged.'
+  invalid: 'The handover could not be read. Check that the header, question headings and dividing lines are intact. Your draft is unchanged.'
+  unknown: 'This guide no longer contains a field or question in that file. Your draft is unchanged.'
+  readFailed: The file could not be opened. Try choosing it again.
+  oneFile: Choose one Markdown handover file at a time.

@@ -1,0 +1,85 @@
+{{- $guide := hugo.Data.guide -}}
+{{- $ui := hugo.Data.interface -}}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ $ui.subtitle }}. {{ $ui.tagline }}">
+  {{ if hugo.IsProduction }}<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">{{ end }}
+  <title>{{ site.Title }} — {{ $ui.subtitle }}</title>
+  {{ with resources.Get "favicon.svg" | fingerprint }}<link rel="icon" type="image/svg+xml" href="{{ .RelPermalink }}">{{ end }}
+  {{ with resources.Get "guide.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ .RelPermalink }}">{{ end }}
+  {{ with resources.Get "js/app.mjs" | js.Build (dict "targetPath" "guide.js" "target" "es2020" "minify" hugo.IsProduction) | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
+</head>
+<body id="top" data-base-path="{{ .RelPermalink }}">
+  <a class="skip-link" href="#workspace">{{ $ui.skip }}</a>
+  <header class="toolbar">
+    <div class="wrap toolbar-inner">
+      <a class="brand" href="#top" aria-label="{{ site.Title }} {{ $ui.home }}">
+        <span class="brand-mark">{{ partial "icon.html" "book" }}</span><span class="brand-name">{{ site.Title }}</span>
+      </a>
+      <div class="tabs" role="tablist" aria-label="{{ $ui.views }}">
+        <button type="button" role="tab" id="write-tab" aria-controls="write-view" aria-selected="true" data-js disabled>{{ partial "icon.html" "pencil" }}<span>{{ $ui.write }}</span></button>
+        <button type="button" role="tab" id="preview-tab" aria-controls="preview-view" aria-selected="false" aria-label="{{ $ui.previewLabel }}" tabindex="-1" data-js disabled>{{ partial "icon.html" "eye" }}<span>{{ $ui.preview }}</span></button>
+      </div>
+      <div class="toolbar-actions">
+        <button type="button" class="button upload-button" data-action="upload" aria-label="{{ $ui.upload }}" title="{{ $ui.upload }}" data-js disabled>{{ partial "icon.html" "upload" }}<span>{{ $ui.upload }}</span></button>
+        <button type="button" class="button primary" data-action="export" data-js disabled>{{ partial "icon.html" "download" }}<span>{{ $ui.export }}</span></button>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="title-page">
+      <div class="title-copy">
+        <p class="eyebrow title-kicker">{{ $ui.subtitle }}</p>
+        <h1>{{ site.Title }}</h1>
+        <p class="tagline">{{ $ui.tagline }}</p>
+      </div>
+      {{ with resources.Get "field-notebooks.svg" | fingerprint }}<img class="cover-art" alt="" width="300" height="170" src="{{ .RelPermalink }}">{{ end }}
+    </div>
+    <noscript><p class="notice">{{ $ui.noScript }}</p></noscript>
+    <div class="spread">
+      {{ partial "contents.html" $guide }}
+      <div class="pages" id="workspace" tabindex="-1">
+        <div id="write-view" role="tabpanel" aria-labelledby="write-tab">
+          <section class="introduction" aria-labelledby="welcome-title">
+            <h2 id="welcome-title">{{ $guide.introduction.title }}</h2>
+            {{ range $guide.introduction.paragraphs }}<p>{{ . }}</p>{{ end }}
+          </section>
+          <form id="handover" autocomplete="off" data-format-version="{{ $guide.formatVersion }}" data-document-title="{{ $guide.documentTitle }}">
+            <section id="project" class="project chapter-target" aria-labelledby="project-heading" tabindex="-1">
+              <div class="project-heading">
+                <h2 id="project-heading">{{ partial "icon.html" "folder" }}{{ $guide.project.title }}</h2>
+                <span class="optional">{{ $ui.optional }}</span>
+              </div>
+              <div class="project-fields">
+                {{ range $guide.project.fields }}
+                <div class="project-field">
+                  <label for="project-{{ .id }}">{{ .label }}</label>
+                  <input type="text" id="project-{{ .id }}" data-field="project.{{ .id }}" data-export-label="{{ .exportLabel }}" {{ with .inputmode }}inputmode="{{ . }}"{{ end }} {{ with .placeholder }}placeholder="{{ . }}"{{ end }} readonly>
+                </div>
+                {{ end }}
+              </div>
+            </section>
+            {{ range $guide.chapters }}{{ partial "chapter.html" . }}{{ end }}
+          </form>
+          <a class="back-link" href="#contents">{{ partial "icon.html" "list" }}{{ $ui.back }}</a>
+        </div>
+        <section id="preview-view" role="tabpanel" aria-labelledby="preview-tab" hidden>
+          <h2>{{ $ui.previewTitle }}</h2>
+          <p>{{ $ui.previewHelp }}</p>
+          <div class="preview-sheet">
+            <div class="file-bar"><span>{{ partial "icon.html" "file" }}{{ $ui.filename }}</span><button class="text-button" type="button" data-action="copy">{{ partial "icon.html" "copy" }}{{ $ui.copy }}</button></div>
+            <pre id="markdown" tabindex="0" aria-label="{{ $ui.previewTitle }}"></pre>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  {{ partial "dialogs.html" $ui }}
+  <p id="feedback" class="feedback" role="status"></p>
+  <div id="drop-overlay" class="drop-overlay" hidden aria-hidden="true"><span>{{ partial "icon.html" "upload" }}{{ $ui.dropOverlay }}</span></div>
+  <script type="application/json" id="messages">{{ $ui.messages | jsonify | safeJS }}</script>
+</body>
+</html>

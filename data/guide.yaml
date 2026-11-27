@@ -1,0 +1,182 @@
+formatVersion: 1
+documentTitle: Research Code Handover
+
+introduction:
+  title: Leave a little context for the next researcher.
+  paragraphs:
+    - You know things about your code that someone opening the files might miss. Why you chose an approach, which results you trust, or the one step you always do by hand.
+    - Share what would help a colleague or your future self pick up the work. Answer any questions you find useful, then export your notes to keep alongside your code.
+
+project:
+  title: Project details
+  fields:
+    - id: title
+      label: Project title
+      exportLabel: Project
+      placeholder: e.g. Meadow survey analysis
+    - id: repository
+      label: Repository URL
+      exportLabel: Repository
+      placeholder: https://…
+      inputmode: url
+    - id: contributor
+      label: Author or contributor
+      exportLabel: Contributor
+      placeholder: Your name or research group
+    - id: version
+      label: Date or project version
+      exportLabel: Date or version
+      placeholder: e.g. Autumn 2026 or v1.2
+
+chapters:
+  - id: story
+    number: I
+    title: The story so far
+    subtitle: Project context, history and people
+    intro: Give the next researcher a sense of what they have inherited, why it exists and who else is involved.
+    accent: mustard
+    icon: book
+    questions:
+      - purpose
+      - decisions
+      - people
+      - next-steps
+
+  - id: workflow
+    number: II
+    title: A day in the life
+    subtitle: Workflow and everyday use
+    intro: Walk someone through the work as you actually do it, from the first file you open to the result you keep.
+    accent: orange
+    icon: cup
+    questions:
+      - typical-session
+      - manual-steps
+      - regular-tools
+
+  - id: setup
+    number: III
+    title: Getting started
+    subtitle: Getting the code running
+    intro: Help someone reach a first successful run, even if they only have a folder of scripts and a small example dataset.
+    accent: olive
+    icon: key
+    questions:
+      - first-run
+      - resources
+      - setup-assumptions
+
+  - id: internals
+    number: IV
+    title: Under the hood
+    subtitle: Understanding and adapting the code
+    intro: Give someone a route through the code and enough scientific context to adapt it to a new question.
+    accent: tobacco
+    icon: compass
+    questions:
+      - reading-order
+      - vocabulary
+      - adaptation
+
+  - id: verification
+    number: V
+    title: Proceed with care
+    subtitle: Verification, reliability and safety
+    intro: Pass on the checks you use to trust a result and the situations where someone should pause.
+    accent: brick
+    icon: shield
+    questions:
+      - trust-checks
+      - reference-results
+      - misleading-results
+      - consequences
+
+  - id: lessons
+    number: VI
+    title: Lessons from the field
+    subtitle: Maintenance, troubleshooting and learning
+    intro: Leave the sort of advice you might give a colleague sitting beside you on their first day with the project.
+    accent: brown
+    icon: notebook
+    questions:
+      - troubleshooting
+      - fragile-parts
+      - hindsight
+
+# Group questions above by moving their IDs. Keep IDs stable when editing the wording below.
+questions:
+  purpose:
+    text: What were you trying to accomplish with this code, and what was outside its intended scope?
+    help: A sentence about the research question and the limits of the analysis is a good place to start.
+    example: We built this to compare flowering dates across our meadow plots. We only sampled in spring, so it tells us very little about late-flowering species.
+  decisions:
+    text: Are there important decisions, previous approaches or abandoned experiments that would help someone understand why the code is the way it is?
+    references:
+      - A Git commit or a decision record can locate the change. Add what led you to make it.
+  people:
+    text: Who uses or depends on this work, and are there any commitments, authorship expectations or responsibilities that someone should know about?
+    references:
+      - If you have a `CITATION.cff`, point to it. Mention any arrangements a list of names would miss.
+  next-steps:
+    text: What would you have liked to improve, investigate or develop further?
+    help: An open question can give someone a way back into the research.
+
+  typical-session:
+    text: Can you describe a typical session of working with this code, from beginning to end?
+    references:
+      - If a Pixi task, Makefile, Snakemake or Nextflow workflow already describes the sequence, name it and explain the decisions you make around it.
+  manual-steps:
+    text: Are there manual steps, a particular execution order, or intermediate results that someone needs to know about?
+    example: I compare the station names against the field notebook before merging the tables. Two stations changed names in 2022.
+  regular-tools:
+    text: Which scripts, notebooks, commands or workflows do you use regularly, and which are only needed occasionally?
+    help: Include any files you keep for historical reasons that could be mistaken for current work.
+
+  first-run:
+    text: What is the easiest way for someone to get the code running for the first time?
+    help: Name a small input they can start with and something they should see when it works.
+    references:
+      - A reference to your README, `pixi.toml`, `pyproject.toml`, `uv.lock` or `environment.yml` may be enough. Add anything someone would still need to know.
+  resources:
+    text: Are there any unusual installation requirements, external resources, datasets, equipment or permissions needed?
+    help: Describe how to request access. Keep passwords and private access links out of your notes.
+  setup-assumptions:
+    text: Are there any common setup problems or environmental assumptions that someone should know about?
+    example: The notebook looks for the data folder next to itself. Opening it from the project root gives a confusing file error.
+
+  reading-order:
+    text: Which files or parts of the code would you recommend someone look at first, and which can they ignore?
+    help: A path and a few words about why it matters can save someone an afternoon.
+  vocabulary:
+    text: What important concepts, variables, data structures or naming conventions might not be obvious from reading the code?
+    example: In the observation array, the second dimension is a repeat visit to the same plot. It is easy to mistake those visits for independent samples.
+    references:
+      - Names and type annotations can describe a structure. Explain what its dimensions, units or categories mean in the research.
+  adaptation:
+    text: How would you recommend adapting this code to a new dataset, experiment, analysis or research question?
+    help: Point to a sensible starting point and an assumption worth checking first.
+
+  trust-checks:
+    text: How do you recognize whether the code is working correctly and producing reasonable results?
+    example: I normally check that the control group shows no systematic response. If it does, I investigate the timestamp preprocessing before changing the analysis.
+    references:
+      - Tests can record expected behavior. Include the checks you make by eye or with your knowledge of the research.
+  reference-results:
+    text: Are there example inputs, reference outputs, tests or particular results that someone should try to reproduce?
+    help: Name the file, figure or test and describe what a reasonable match looks like.
+  misleading-results:
+    text: Are there circumstances in which the code runs successfully but produces results that should not be trusted?
+    example: I don't know whether this works with newer datasets. The sensor changed after our last field season.
+  consequences:
+    text: Are there things someone should avoid running, changing, deleting or sharing without understanding the consequences?
+    help: Think about original observations, private data, costly jobs and scripts that overwrite their inputs.
+
+  troubleshooting:
+    text: What mistakes, errors, warnings or unexpected behaviors have you encountered while working with this code?
+    help: Knowing when something happens can help someone investigate, even if the cause is still a mystery.
+  fragile-parts:
+    text: Are there parts of the code that are unfinished, fragile, difficult to understand or that you would be cautious about modifying?
+    example: I never managed to establish why the last two plots swap order on some machines. I check their labels against the table by hand.
+  hindsight:
+    text: What do you wish you had known or learned before starting to work on this project?
+    help: This can be about the data, the people or the research itself as much as the code.

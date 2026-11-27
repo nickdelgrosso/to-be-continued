@@ -1,0 +1,26 @@
+default:
+  image:
+    name: ghcr.io/prefix-dev/pixi:0.72.0
+    entrypoint: [""]
+
+variables:
+  PIXI_LOCKED: "true"
+
+stages: [test, deploy]
+
+test:
+  stage: test
+  script:
+    - pixi run test
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH'
+
+publish-guide:
+  stage: deploy
+  script:
+    - pixi run build --baseURL "${CI_PAGES_URL%/}/"
+  pages:
+    publish: public
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'

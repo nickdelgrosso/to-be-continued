@@ -1,0 +1,2 @@
+{{- $icons := resources.Get "icons.svg" | fingerprint -}}
+<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="{{ $icons.RelPermalink }}#{{ . }}"></use></svg>

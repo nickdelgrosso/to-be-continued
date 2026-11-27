@@ -1,0 +1,11 @@
+baseURL = 'http://localhost:1314/'
+title = 'To Be Continued. Developer guide'
+disableKinds = ['taxonomy', 'term', 'RSS', 'sitemap', 'robotsTXT', '404']
+disableHugoGeneratorInject = true
+
+[outputs]
+home = ['HTML']
+
+[[module.mounts]]
+source = 'index.html'
+target = 'layouts/home.html'

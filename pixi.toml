@@ -1,0 +1,17 @@
+[workspace]
+name = "to-be-continued"
+version = "0.1.0"
+description = "A field guide to research code handover"
+channels = ["conda-forge"]
+platforms = ["linux-64", "win-64", "osx-arm64", "osx-64"]
+
+[dependencies]
+hugo = ">=0.158,<1"
+nodejs = ">=24,<25"
+gh = ">=2,<3"
+
+[tasks]
+serve = "hugo server --renderToMemory --disableFastRender"
+docs = "hugo server --source docs --port 1314 --renderToMemory"
+build = "hugo --minify --cleanDestinationDir"
+test = "node --test tests/*.test.mjs"

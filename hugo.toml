@@ -1,0 +1,11 @@
+baseURL = 'http://localhost:1313/'
+title = 'To Be Continued.'
+locale = 'en'
+disableKinds = ['taxonomy', 'term', 'RSS', 'sitemap', 'robotsTXT', '404']
+
+[outputs]
+home = ['HTML']
+
+[minify.tdewolff.html]
+keepQuotes = true
+keepEndTags = true

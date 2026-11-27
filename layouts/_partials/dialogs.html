@@ -1,0 +1,46 @@
+<dialog id="export-dialog" aria-labelledby="export-title">
+  <div class="dialog-body">
+    <span class="dialog-icon">{{ partial "icon.html" "file" }}</span>
+    <h2 id="export-title">{{ .exportTitle }}</h2>
+    <p>{{ .destination }}</p><p class="quiet">{{ .privacyReminder }}</p>
+    <div class="dialog-actions">
+      <button type="button" class="button" data-close autofocus>{{ .cancel }}</button>
+      <button type="button" class="button primary" id="download">{{ partial "icon.html" "download" }}{{ .download }}</button>
+    </div>
+    <p class="dialog-message" id="export-message" role="status"></p>
+  </div>
+</dialog>
+<dialog id="clear-dialog" aria-labelledby="clear-title">
+  <div class="dialog-body">
+    <span class="dialog-icon">{{ partial "icon.html" "erase" }}</span>
+    <h2 id="clear-title">{{ .clearTitle }}</h2>
+    <p>{{ .clearHelp }}</p>
+    <div class="dialog-actions">
+      <button type="button" class="button" data-close autofocus>{{ .keep }}</button>
+      <button type="button" class="button primary" id="confirm-clear">{{ .clear }}</button>
+    </div>
+  </div>
+</dialog>
+<dialog id="upload-dialog" aria-labelledby="upload-title">
+  <div class="dialog-body">
+    <span class="dialog-icon">{{ partial "icon.html" "upload" }}</span>
+    <h2 id="upload-title">{{ .uploadTitle }}</h2>
+    <p>{{ .uploadHelp }}</p>
+    <button type="button" class="file-drop" id="choose-file" autofocus>{{ partial "icon.html" "upload" }}<strong>{{ .chooseFile }}</strong><span>{{ .dropHint }}</span></button>
+    <input id="upload-file" type="file" accept=".md,.markdown,text/markdown,text/plain" hidden>
+    <p class="dialog-message" id="upload-error" role="alert"></p>
+    <div class="dialog-actions"><button type="button" class="button" data-close>{{ .close }}</button></div>
+  </div>
+</dialog>
+<dialog id="replace-dialog" aria-labelledby="replace-title">
+  <div class="dialog-body">
+    <span class="dialog-icon">{{ partial "icon.html" "file" }}</span>
+    <h2 id="replace-title">{{ .replaceTitle }}</h2>
+    <p class="file-name" id="import-name"></p>
+    <p>{{ .replaceHelp }}</p>
+    <div class="dialog-actions">
+      <button type="button" class="button" data-close autofocus>{{ .keep }}</button>
+      <button type="button" class="button primary" id="confirm-replace">{{ .replace }}</button>
+    </div>
+  </div>
+</dialog>

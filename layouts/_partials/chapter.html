@@ -1,0 +1,28 @@
+{{ $ui := hugo.Data.interface }}
+<section id="chapter-{{ .id }}" class="chapter chapter-target" data-chapter="{{ .id }}" data-accent="{{ .accent }}" aria-labelledby="title-{{ .id }}" tabindex="-1">
+  <div class="chapter-heading">
+    {{ with .icon }}<span class="chapter-symbol">{{ partial "icon.html" . }}</span>{{ end }}
+    <div>
+      <p class="eyebrow">{{ $ui.chapter }} {{ .number }}</p>
+      <h2 id="title-{{ .id }}">{{ .title }}</h2>
+    </div>
+  </div>
+  <h3 class="chapter-subtitle">{{ .subtitle }}</h3>
+  <p class="chapter-intro">{{ .intro }}</p>
+  {{ range $id := .questions }}
+    {{ with index hugo.Data.guide.questions $id }}
+    <div class="question">
+      <label for="answer-{{ $id }}">{{ .text }}</label>
+      {{ with .help }}<p class="help" id="help-{{ $id }}">{{ . | markdownify }}</p>{{ end }}
+      <textarea id="answer-{{ $id }}" data-field="answer.{{ $id }}" rows="4" placeholder="{{ $ui.answerPlaceholder }}" {{ with .help }}aria-describedby="help-{{ $id }}"{{ end }} readonly></textarea>
+      {{ if or .example .references }}
+      <details class="field-notes">
+        <summary>{{ partial "icon.html" "chevron" }}{{ if .references }}{{ $ui.notes }}{{ else }}{{ $ui.example }}{{ end }}</summary>
+        {{ range .references }}<p>{{ . | markdownify }}</p>{{ end }}
+        {{ with .example }}<blockquote>{{ . }}</blockquote>{{ end }}
+      </details>
+      {{ end }}
+    </div>
+    {{ else }}{{ errorf "Unknown question ID %q in data/guide.yaml" $id }}{{ end }}
+  {{ end }}
+</section>
