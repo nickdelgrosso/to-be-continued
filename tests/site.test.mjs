@@ -28,8 +28,13 @@ for (const path of ["/", "/a-lab/a-project/"]) {
     assert.ok(html.includes(`data-base-path="${path}"`));
     assert.ok(html.includes("connect-src 'none'"));
     const published = readdirSync(join(scratch.path, "public"), { recursive: true });
-    assert.deepEqual(published.filter(file => file.endsWith(".html")).sort(), ["index.html", join("references", "index.html")]);
+    assert.deepEqual(published.filter(file => file.endsWith(".html")).sort(), [join("about", "index.html"), "index.html", join("references", "index.html")]);
     const reading = readFileSync(join(scratch.path, "public", "references", "index.html"), "utf8");
+    const about = readFileSync(join(scratch.path, "public", "about", "index.html"), "utf8");
+    for (const page of [html, reading]) assert.ok(page.includes(`href="${path}about/"`));
+    assert.ok(about.includes(`href="${path}#workspace"`));
+    assert.ok(about.includes(`href="${path}references/"`));
+    assert.ok(about.includes('href="https://personalhel.github.io/RSE-hackathon/"'));
     assert.ok(html.includes('href="' + path + 'references/"'));
     assert.ok(reading.includes('href="' + path + '#workspace"'));
     assert.ok(reading.includes("CC BY 4.0"));
@@ -44,7 +49,7 @@ for (const path of ["/", "/a-lab/a-project/"]) {
       assert.ok(html.includes('value="' + persona.id + '"'));
       assert.ok(persona.illustration);
     }
-    const assets = [...(html + reading).matchAll(/<(?:link|script|img|use)\b[^>]*?\s(?:src|href)="([^"]+)"/g)];
+    const assets = [...(html + reading + about).matchAll(/<(?:link|script|img|use)\b[^>]*?\s(?:src|href)="([^"]+)"/g)];
     assert.ok(assets.length > 0);
     for (const [, asset] of assets) {
       const url = new URL(asset.replaceAll("&amp;", "&"), base);

@@ -8,12 +8,7 @@
 </head>
 <body data-base-path="{{ site.Home.RelPermalink }}">
   <a class="skip-link" href="#readings">{{ $reading.skip }}</a>
-  <header class="toolbar">
-    <div class="wrap toolbar-inner">
-      <a class="brand reading-brand" href="{{ site.Home.RelPermalink }}"><span class="brand-mark">{{ partial "icon.html" "book" }}</span><span>{{ site.Title }}</span></a>
-      <a class="button return-guide" href="{{ site.Home.RelPermalink }}#workspace">{{ $reading.back }}</a>
-    </div>
-  </header>
+  {{ partial "secondary-header.html" . }}
   <main class="wrap" id="readings">
     <div class="title-page reading-title">
       <div class="title-copy">
@@ -25,9 +20,12 @@
       {{ with resources.Get $reading.illustration | fingerprint }}<img class="cover-art" alt="" width="300" height="170" src="{{ .RelPermalink }}">{{ end }}
     </div>
     <div class="spread">
-      <nav class="margin-column reading-nav" aria-labelledby="reading-contents"><h2 id="reading-contents">{{ $reading.contents }}</h2>
-        {{ range $chapter := $guide.chapters }}{{ with index $reading.groups $chapter.id }}<a class="contents-link" href="#{{ $chapter.id }}">{{ .title }}</a>{{ end }}{{ end }}
-      </nav>
+      <div class="margin-column">
+        <nav class="reading-nav" aria-labelledby="reading-contents"><h2 id="reading-contents">{{ $reading.contents }}</h2>
+          {{ range $chapter := $guide.chapters }}{{ with index $reading.groups $chapter.id }}<a class="contents-link" href="#{{ $chapter.id }}">{{ .title }}</a>{{ end }}{{ end }}
+        </nav>
+        {{ with site.GetPage "/about" }}<a class="text-button reading-link" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+      </div>
       <div class="pages">
         {{ range $chapter := $guide.chapters }}{{ with index $reading.groups $chapter.id }}
         <section class="reading-group chapter" data-accent="{{ $chapter.accent }}" id="{{ $chapter.id }}">

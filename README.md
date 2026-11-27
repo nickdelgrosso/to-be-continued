@@ -6,7 +6,7 @@
 
 You know which notebook to open first, why one approach was abandoned and what a trustworthy result looks like. This single-page field guide helps you leave those details for a colleague or your future self.
 
-**[Open the field guide](https://nickdelgrosso.github.io/to-be-continued/)** · [Reading and references](https://nickdelgrosso.github.io/to-be-continued/references/)
+**[Open the field guide](https://to-be-continued.org/)** · [Reading and references](https://to-be-continued.org/references/) · [About the guide and its team](https://to-be-continued.org/about/)
 
 ### Write a handover
 

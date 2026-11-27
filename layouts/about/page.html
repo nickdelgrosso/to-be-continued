@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {{ partial "head.html" (dict "title" (printf "%s · %s" .Title site.Title) "description" .Description "script" "js/reading.mjs" "target" "reading.js") }}
+</head>
+<body data-base-path="{{ site.Home.RelPermalink }}">
+  <a class="skip-link" href="#story">{{ .Params.skip }}</a>
+  {{ partial "secondary-header.html" . }}
+  <main class="wrap">
+    <div class="title-page reading-title">
+      <div class="title-copy">
+        <p class="eyebrow title-kicker">{{ hugo.Data.interface.subtitle }}</p>
+        <h1>{{ .Title }}</h1>
+        <p class="reading-intro">{{ .Description }}</p>
+        <div class="appearance">{{ partial "colour-mode.html" hugo.Data.interface }}</div>
+      </div>
+      {{ with resources.Get .Params.illustration | fingerprint }}<img class="cover-art" alt="" width="300" height="170" src="{{ .RelPermalink }}">{{ end }}
+    </div>
+    <div class="about-body">
+      <article class="about-story" id="story" tabindex="-1">
+        {{ .Content }}
+        {{ with site.GetPage "/references" }}<a class="text-button reading-link" href="{{ .RelPermalink }}">{{ partial "icon.html" "book" }}{{ hugo.Data.reading.title }}</a>{{ end }}
+      </article>
+      <section class="about-team" aria-labelledby="team">
+        <h2 id="team">{{ .Params.teamHeading }}</h2>
+        <ul>{{ range .Params.team }}<li>{{ . }}</li>{{ end }}</ul>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

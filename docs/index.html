@@ -128,7 +128,7 @@ pixi run build</code></pre>
       <section id="release">
         <h2>Publishing and attribution</h2>
         <p>GitLab uses <code>.gitlab-ci.yml</code> and <code>CI_PAGES_URL</code>. GitHub uses <code>.github/workflows/pages.yml</code> and the base URL returned by its Pages configuration action. Both run the Pixi tests and use the production build on the default branch. Only <code>public/</code> is selected for deployment.</p>
-        <p>Keep developer material under <code>docs/</code>. Adding it to the main site’s <code>static/</code>, <code>content/</code> or asset pipeline would publish it. The production tests check that the generated site contains exactly the questionnaire and its public reading page.</p>
+        <p>Keep developer material under <code>docs/</code>. Adding it to the main site’s <code>static/</code>, <code>content/</code> or asset pipeline would publish it. The production tests check that the generated site contains the questionnaire, references and About pages. Edit the project story and team credits in <code>content/about.md</code>.</p>
         <p>The repository’s <code>LICENSE</code> covers the MIT-licensed site and illustrations. The team records AI involvement in <code>aidecl.yaml</code>. When that involvement changes, update the declaration and check it with <code>aidecl validate aidecl.yaml</code>. Researchers retain ownership of their exported notes.</p>
       </section>
       <a href="#purpose">Return to the beginning</a>

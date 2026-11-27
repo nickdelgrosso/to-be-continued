@@ -326,5 +326,13 @@ select { max-width: 100%; padding: .4rem .65rem; border: 1px solid var(--rule-da
 .reading-thumb.logo { width: 3.4rem; border: 0; background: #fff; padding: .55rem; border-radius: 3px; }
 .reading-credits { border-top: 1px solid var(--rule); padding-top: 1rem; }
 .reading-credits p { margin: .45rem 0; color: var(--color-text-secondary); font-size: .83rem; }
+.about-body { display: grid; grid-template-columns: minmax(0, 62ch) minmax(12rem, 1fr); gap: clamp(2rem, 7vw, 6rem); margin: 2.25rem 0 4rem; }
+.about-story p { margin: .85rem 0; }
+.about-story a { text-underline-offset: .16em; }
+.about-team { align-self: start; border-top: 2px solid var(--rule-dark); padding-top: .9rem; }
+.about-team h2 { font-size: 1.4rem; }
+.about-team ul { list-style: none; margin: .75rem 0 0; padding: 0; }
+.about-team li { padding: .35rem 0; border-bottom: 1px solid var(--rule); }
+@media (max-width: 45rem) { .about-body { grid-template-columns: minmax(0, 1fr); margin-top: 1.5rem; } }
 @media (max-width: 45rem) { .reading-title .appearance { display: flex; } .reading-title .appearance select { width: auto; } .reading-nav { display: flex; flex-wrap: wrap; gap: .25rem .6rem; } .reading-nav h2 { flex-basis: 100%; } .reading-nav .contents-link { min-height: 1.8rem; padding: .2rem 0; } }
 @media (max-width: 32rem) { .reading-list li { flex-wrap: wrap; } .reading-brand { display: flex !important; font-size: 1.06rem; } .reading-thumb.logo { width: 2.6rem; } }
