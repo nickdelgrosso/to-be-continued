@@ -40,6 +40,7 @@ clearTitle: Clear this draft?
 clearHelp: This removes the project details and responses saved for this guide in this browser. Export a copy first if you want to keep them.
 keep: Keep writing
 pasteLabel: Paste exported Markdown
+pasteField: Contents of HANDOVER.md
 pasteHint: Include the header with handover_version and question_order.
 pasteOpen: Open pasted handover
 uploadTitle: Open a handover
@@ -79,7 +80,7 @@ messages:
 routeLabel: Writing route
 full: Full guide
 speedrun: Speedrun
-speedHelp: One quick prompt per chapter. Switch routes any time to see your other answers.
+speedHelp: Speedrun shows one prompt per chapter. Both routes use the same answers.
 
 scopeTitle: Choose which chapters to include
 scopeHelp: You can change these choices any time. Chapters with answers stay open.

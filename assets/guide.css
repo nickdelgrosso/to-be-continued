@@ -298,3 +298,8 @@ select { max-width: 100%; padding: .4rem .65rem; border: 1px solid var(--rule-da
 @media (max-width: 45rem) { .appearance { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; } .appearance label:not(:first-child) { margin-left: 0; } .appearance select { width: 100%; } .title-page:has(.appearance) { padding-right: 0; } }
 
 .prompt-topics { margin-top: .32rem; color: var(--color-text-secondary); font-size: .78rem; }
+
+@media (max-width: 25rem) {
+  .appearance:has(#persona) { grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto; grid-auto-flow: column; }
+  .title-copy:has(.appearance) { width: 100%; }
+}
