@@ -1,0 +1,43 @@
+static/third-party/dompurify-LICENSE-MPL.txt
+  s_e21dbb2078b1a1::t_65f5388b56ddfb 1-373
+data/interface.yaml
+  s_e21dbb2078b1a1::t_600e4150413844 8-11,13
+layouts/home.html
+  s_e21dbb2078b1a1::t_600e4150413844 82-84,87-88
+assets/js/app.mjs
+  s_e21dbb2078b1a1::t_600e4150413844 8-9,47-58,99,174,345,347
+tests/preview.test.mjs
+  s_e21dbb2078b1a1::t_600e4150413844 1-15
+assets/js/preview.mjs
+  s_e21dbb2078b1a1::t_600e4150413844 1-35
+tests/site.test.mjs
+  s_e21dbb2078b1a1::t_600e4150413844 13
+static/third-party/versions.txt
+  s_e21dbb2078b1a1::t_600e4150413844 1-7
+assets/guide.css
+  s_e21dbb2078b1a1::t_600e4150413844 252-263
+assets/vendor/marked.mjs
+  s_e21dbb2078b1a1::t_d1d6144f5b0dcc 1-89
+assets/vendor/purify.mjs
+  s_e21dbb2078b1a1::t_8c7727f719bba2 1-2609
+static/third-party/dompurify-LICENSE.txt
+  s_e21dbb2078b1a1::t_038c073f59b210 1-202
+static/third-party/marked-LICENSE.txt
+  s_e21dbb2078b1a1::t_2a5d33aff4fab8 1-44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ca5397b35da64c69ff005749a4b0bb9ab47f31e4",
+  "prompts": {},
+  "sessions": {
+    "s_e21dbb2078b1a1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a21d73-d2f2-7832-ae03-9ac1d7f430d7",
+        "model": "gpt-6.2-astra"
+      },
+      "human_author": "Nicholas A. Del Grosso <delgrosso.nick@gmail.com>"
+    }
+  }
+}
