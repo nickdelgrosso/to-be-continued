@@ -1,0 +1,25 @@
+data/interface.yaml
+  s_e21dbb2078b1a1::t_5999c5edc6aa1b 39-41,43,73
+layouts/_partials/dialogs.html
+  s_e21dbb2078b1a1::t_5999c5edc6aa1b 31-36
+assets/guide.css
+  s_e21dbb2078b1a1::t_5999c5edc6aa1b 246-251
+assets/js/app.mjs
+  s_e21dbb2078b1a1::t_5999c5edc6aa1b 248,250,253,256-275,287-291
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9cfe138fd1a6ec9230c61521fb83f2c35fd5a78d",
+  "prompts": {},
+  "sessions": {
+    "s_e21dbb2078b1a1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a21d73-d2f2-7832-ae03-9ac1d7f430d7",
+        "model": "gpt-6.2-astra"
+      },
+      "human_author": "Nicholas A. Del Grosso <delgrosso.nick@gmail.com>"
+    }
+  }
+}
