@@ -1,0 +1,50 @@
+AGENTS.md
+  s_e21dbb2078b1a1::t_dde1e6938fddac 6-7
+layouts/_partials/agent-resources.html
+  s_e21dbb2078b1a1::t_dc45e364697a9e 1-14
+content/about.md
+  s_e21dbb2078b1a1::t_dde1e6938fddac 23-26
+layouts/_partials/head.html
+  s_e21dbb2078b1a1::t_dc45e364697a9e 4
+tests/site.test.mjs
+  s_e21dbb2078b1a1::t_ed63de2173b8c3 8,25-28,39-49,91-113,138-139,142-147
+  s_e21dbb2078b1a1::t_54c2b4e5dea3a2 119-123,130,140-141,148-152
+  s_e21dbb2078b1a1::t_932989e7cddc08 114
+layouts/_partials/quick-question.html
+  s_e21dbb2078b1a1::t_dc45e364697a9e 1-9
+layouts/_partials/chapter.html
+  s_e21dbb2078b1a1::t_dc45e364697a9e 12
+.github/workflows/pages.yml
+  s_e21dbb2078b1a1::t_d4bfc1dbd1d16f 31-33
+assets/agents/handover-guide.md
+  s_e21dbb2078b1a1::t_54c2b4e5dea3a2 11,72
+  s_e21dbb2078b1a1::t_3be1ff1c81afa1 1-10,12-71,73-94
+assets/js/markdown.mjs
+  s_e21dbb2078b1a1::t_dc45e364697a9e 1-13
+docs/index.html
+  s_e21dbb2078b1a1::t_d4bfc1dbd1d16f 132
+  s_e21dbb2078b1a1::t_dde1e6938fddac 114-115
+aidecl.yaml
+  s_e21dbb2078b1a1::t_dde1e6938fddac 15-16
+assets/agents/llms.txt
+  s_e21dbb2078b1a1::t_54c2b4e5dea3a2 7-9
+  s_e21dbb2078b1a1::t_3be1ff1c81afa1 1-6,10-21
+README.md
+  s_e21dbb2078b1a1::t_dde1e6938fddac 19-26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "603e50f38b801c651f2ead40147a5c480e9c4a2d",
+  "prompts": {},
+  "sessions": {
+    "s_e21dbb2078b1a1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a21d73-d2f2-7832-ae03-9ac1d7f430d7",
+        "model": "gpt-6.2-astra"
+      },
+      "human_author": "Nicholas A. Del Grosso <delgrosso.nick@gmail.com>"
+    }
+  }
+}
