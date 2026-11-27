@@ -5,6 +5,8 @@ import { fromMarkdown, ImportError, toMarkdown } from "./markdown.mjs";
 import { chapterApplies, coverage } from "./scope.mjs";
 import { preference } from "./preferences.mjs";
 
+import { renderDocument } from "./preview.mjs";
+
 const byId = id => document.getElementById(id);
 const form = byId("handover");
 const messages = JSON.parse(byId("messages").textContent);
@@ -41,6 +43,18 @@ function valuesOnPage() {
 function markdown() {
   return toMarkdown(guide, valuesOnPage());
 }
+
+const format = byId("preview-format");
+function refreshPreview() {
+  const source = markdown();
+  const raw = byId("markdown");
+  const rendered = byId("rendered-markdown");
+  showRawText(raw, source);
+  raw.hidden = format.value === "rendered";
+  rendered.hidden = !raw.hidden;
+  if (!rendered.hidden) renderDocument(rendered, source);
+}
+format.addEventListener("change", refreshPreview);
 
 function announce(message) {
   clearTimeout(toastTimer);
@@ -82,7 +96,7 @@ function fill(values) {
     }
   }
   updateCount();
-  if (!byId("preview-view").hidden) showRawText(byId("markdown"), markdown());
+  if (!byId("preview-view").hidden) refreshPreview();
 }
 
 function restore() {
@@ -157,7 +171,7 @@ function changeView(preview, restorePosition = true) {
     tab.setAttribute("aria-selected", String(active));
   }
   if (preview) {
-    showRawText(byId("markdown"), markdown());
+    refreshPreview();
     byId("workspace").scrollIntoView({ block: "start" });
   } else {
     if (needsResize) controls.forEach(resizeField);
@@ -328,7 +342,9 @@ async function copy() {
     await copyMarkdown(markdown());
     announce(messages.copied);
   } catch {
+    format.value = "source";
     changeView(true);
+    refreshPreview();
     const raw = byId("markdown");
     raw.focus();
     const range = document.createRange();

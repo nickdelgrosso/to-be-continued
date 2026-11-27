@@ -79,9 +79,13 @@
         <section id="preview-view" role="tabpanel" aria-labelledby="preview-tab" hidden>
           <h2>{{ $ui.previewTitle }}</h2>
           <p>{{ $ui.previewHelp }}</p>
+          <div class="route-picker"><label for="preview-format">{{ $ui.previewFormat }}</label>
+            <select id="preview-format"><option value="source">{{ $ui.sourceView }}</option><option value="rendered">{{ $ui.renderedView }}</option></select>
+          </div>
           <div class="preview-sheet">
             <div class="file-bar"><span>{{ partial "icon.html" "file" }}{{ $ui.filename }}</span><button class="text-button" type="button" data-action="copy" title="{{ $ui.copyHint }}">{{ partial "icon.html" "copy" }}{{ $ui.copy }}</button></div>
-            <pre id="markdown" tabindex="0" aria-label="{{ $ui.previewTitle }}"></pre>
+            <pre id="markdown" tabindex="0" aria-label="{{ $ui.sourceView }}"></pre>
+            <article id="rendered-markdown" class="rendered" aria-label="{{ $ui.renderedView }}" hidden></article>
           </div>
         </section>
       </div>

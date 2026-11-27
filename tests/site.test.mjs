@@ -10,7 +10,7 @@ const source = fileURLToPath(new URL("../", import.meta.url));
 let scratch;
 before(() => {
   scratch = mkdtempDisposableSync(join(tmpdir(), "to-be-continued-test-"));
-  for (const item of ["assets", "data", "docs", "layouts", "hugo.toml"]) {
+  for (const item of ["assets", "data", "docs", "layouts", "static", "hugo.toml"]) {
     cpSync(join(source, item), join(scratch.path, item), { recursive: true });
   }
 });

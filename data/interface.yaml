@@ -5,9 +5,12 @@ home: Return to the title page
 views: Handover views
 write: Write
 preview: Preview
-previewTitle: Markdown preview
+previewTitle: Preview your handover
+previewFormat: Preview format
+sourceView: Markdown source
+renderedView: Rendered
 previewLabel: Preview Markdown
-previewHelp: This is the text that goes into your file. Return to Write to make changes.
+previewHelp: Read your handover as a document or check the Markdown before downloading.
 upload: Upload File
 uploadHint: Upload HANDOVER.md previously exported by this tool
 exportHint: Download your answered prompts as HANDOVER.md
