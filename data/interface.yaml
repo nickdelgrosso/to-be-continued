@@ -45,6 +45,8 @@ replaceTitle: Replace this draft?
 replaceHelp: Opening this file will replace the project details and responses in this browser. Export your current draft first if you want to keep it.
 replace: Replace draft
 messages:
+  fraction: '{done}/{total} · {percent}%'
+  noneApplicable: No applicable prompts
   local: Local draft
   saved: Saved in this browser
   unavailable: Browser saving unavailable
@@ -71,3 +73,14 @@ routeLabel: Writing route
 full: Full guide
 speedrun: Speedrun
 speedHelp: One quick prompt per chapter. Switch routes any time to see your other answers.
+
+scopeTitle: Choose which chapters to include
+scopeHelp: You can change these choices any time. Chapters with answers stay open.
+scopeInclude: Include this chapter
+scopeUnsure: Unsure for now
+coverage: Handover coverage
+coverageHelp: Answered prompts in the chapters you included. A prompt can count towards more than one topic.
+coverageTags:
+  - { id: technical, label: Technical }
+  - { id: personal, label: Personal }
+  - { id: ethical, label: Ethical }

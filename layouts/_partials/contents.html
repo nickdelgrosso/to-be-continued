@@ -14,6 +14,10 @@
       <h2>{{ $ui.draft }}</h2>
       <p class="save-line"><span id="state-dot" aria-hidden="true"></span><span id="save-state" role="status">{{ $ui.messages.local }}</span></p>
       <p id="response-count">{{ $ui.messages.zero }}</p>
+      <details class="coverage" open><summary>{{ $ui.coverage }}</summary>
+        <dl>{{ range $ui.coverageTags }}<div><dt>{{ .label }}</dt><dd data-coverage="{{ .id }}">—</dd></div>{{ end }}</dl>
+        <p>{{ $ui.coverageHelp }}</p>
+      </details>
       <p class="privacy">{{ $ui.privacy }}</p>
       <p class="storage-warning" id="storage-warning" role="status" hidden>{{ $ui.messages.storageHelp }}</p>
       <div class="draft-actions">

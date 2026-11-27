@@ -67,6 +67,8 @@ chapters:
       - consequences
 
   - id: workflow
+    scope: Is the day-to-day workflow already documented?
+    omit: Yes, skip workflow
     number: IV
     title: A day in the life
     subtitle: Workflow and everyday use
@@ -79,6 +81,8 @@ chapters:
       - regular-tools
 
   - id: internals
+    scope: Will the next researcher adapt the code?
+    omit: No, skip adapting the code
     number: V
     title: Under the hood
     subtitle: Understanding and adapting the code
@@ -91,6 +95,8 @@ chapters:
       - adaptation
 
   - id: setup
+    scope: Is the setup documented somewhere they can find?
+    omit: Yes, skip setup
     number: VI
     title: Getting started
     subtitle: Getting the code running
@@ -105,83 +111,103 @@ chapters:
 # Group questions above by moving their IDs. Keep IDs stable when editing the wording below.
 questions:
   purpose:
+    tags: [personal, technical]
     text: What question did you build this code to answer?
     help: Include a question your analysis can’t answer.
     example: We built this to compare flowering dates across our meadow plots. We only sampled in spring, so it tells us very little about late-flowering species.
   decisions:
+    tags: [technical, personal]
     quick: Which decision would puzzle someone new?
     text: Which decision best explains why the code looks this way?
     references:
       - Link to the change if you have it. Say what you tried first and why you moved on.
   people:
+    tags: [personal, ethical]
     text: Who should the next researcher speak to?
     references:
       - Mention who relies on the results, who needs credit and any promises you made.
   next-steps:
+    tags: [personal]
     text: What would you try next?
     help: A loose end is a good place for someone to pick up the work.
 
   typical-session:
+    tags: [technical]
     text: How do you get from raw data to a result you keep?
     references:
       - If a Pixi task, Makefile, Snakemake or Nextflow workflow already describes the sequence, name it and explain the decisions you make around it.
   manual-steps:
+    tags: [technical, personal]
     quick: Which step do you still do by hand?
     text: Which steps do you do by hand?
     example: I compare the station names against the field notebook before merging the tables. Two stations changed names in 2022.
   regular-tools:
+    tags: [technical]
     text: Which scripts or commands do you actually use?
     help: Flag old scripts that still look current.
 
   first-run:
+    tags: [technical]
     quick: What’s the smallest example someone can run?
     text: How can someone get a first result?
     help: Name a small input they can start with and something they should see when it works.
     references:
       - A reference to your README, `pixi.toml`, `pyproject.toml`, `uv.lock` or `environment.yml` may be enough. Add anything someone would still need to know.
   resources:
+    tags: [technical, ethical]
     text: What does someone need access to before starting?
     help: Mention datasets, equipment or permissions and how to get them. Keep passwords and private access links out of your notes.
   setup-assumptions:
+    tags: [technical]
     text: What catches people out during setup?
     example: The notebook looks for the data folder next to itself. Opening it from the project root gives a confusing file error.
 
   reading-order:
+    tags: [technical]
     text: Which file should someone read first?
     help: A path and a few words about why it matters can save someone an afternoon.
   vocabulary:
+    tags: [technical]
     quick: Which name or unit is easy to misread?
     text: Which names, units or dimensions need explaining?
     example: In the observation array, the second dimension is a repeat visit to the same plot. It is easy to mistake those visits for independent samples.
     references:
       - Names and type annotations can describe a structure. Explain what its dimensions, units or categories mean in the research.
   adaptation:
+    tags: [technical, ethical]
     text: What would you change first for a new dataset?
     help: Point to a sensible starting point and an assumption worth checking first.
 
   trust-checks:
+    tags: [technical, ethical]
     quick: What should someone check before trusting a result?
     text: How do you tell whether a result makes sense?
     example: I normally check that the control group shows no systematic response. If it does, I investigate the timestamp preprocessing before changing the analysis.
     references:
       - Include a check you make by eye or using your knowledge of the research.
   reference-results:
+    tags: [technical]
     text: Which result should someone try to reproduce?
     help: Name the file, figure or test and describe what a reasonable match looks like.
   misleading-results:
+    tags: [technical, ethical]
     text: When can a successful run give a misleading result?
     example: I don't know whether this works with newer datasets. The sensor changed after our last field season.
   consequences:
+    tags: [ethical]
     text: What needs care before someone changes or shares it?
     help: Think about original observations, private data, costly jobs and scripts that overwrite their inputs.
 
   troubleshooting:
+    tags: [technical]
     text: Which error have you already spent time chasing?
     help: Knowing when something happens can help someone investigate, even if the cause is still a mystery.
   fragile-parts:
+    tags: [technical, personal]
     text: Which part still feels fragile?
     example: I never managed to establish why the last two plots swap order on some machines. I check their labels against the table by hand.
   hindsight:
+    tags: [personal]
     quick: What do you wish you’d known on day one?
     text: What do you wish you’d known at the start?
     help: This can be about the data, the people or the research itself as much as the code.

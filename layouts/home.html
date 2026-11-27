@@ -52,6 +52,11 @@
             <select id="route" aria-describedby="speed-help"><option value="full">{{ $ui.full }}</option><option value="quick">{{ $ui.speedrun }}</option></select>
             <p id="speed-help">{{ $ui.speedHelp }}</p>
           </div>
+          {{ if where $guide.chapters "scope" "ne" nil }}
+          <details class="scope-picker"><summary>{{ $ui.scopeTitle }}</summary><p>{{ $ui.scopeHelp }}</p>
+            {{ range $guide.chapters }}{{ if .scope }}<div><label for="scope-{{ .id }}">{{ .scope }}</label>
+            <select id="scope-{{ .id }}" data-scope="{{ .id }}" data-js disabled><option value="unsure">{{ $ui.scopeUnsure }}</option><option value="include">{{ $ui.scopeInclude }}</option><option value="omit">{{ .omit }}</option></select></div>{{ end }}{{ end }}
+          </details>{{ end }}
           <form id="handover" autocomplete="off" data-format-version="{{ $guide.formatVersion }}" data-document-title="{{ $guide.documentTitle }}">
             <section id="project" class="project chapter-target" aria-labelledby="project-heading" tabindex="-1">
               <div class="project-heading">

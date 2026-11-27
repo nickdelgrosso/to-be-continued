@@ -231,3 +231,15 @@ body.dragging .file-drop { outline: 2px dashed var(--color-brick); outline-offse
 .route-picker label { font-weight: 650; }
 select { max-width: 100%; padding: .4rem .65rem; border: 1px solid var(--rule-dark); border-radius: 3px; background: var(--color-surface); color: var(--color-text); font: inherit; }
 .route-picker p { flex-basis: 100%; color: var(--color-text-secondary); font-size: .88rem; }
+
+.scope-picker { margin-top: 1rem; border-block: 1px solid var(--rule); padding: .6rem 0; }
+.scope-picker summary, .coverage summary { font-weight: 620; }
+.scope-picker > div { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: .35rem 1rem; margin-top: .65rem; }
+.scope-picker p, .coverage p { color: var(--color-text-secondary); font-size: .85rem; }
+.coverage { margin: .65rem 0; width: 100%; font-size: .84rem; }
+.coverage dl { margin: .4rem 0; }
+.coverage dl div { display: flex; justify-content: space-between; gap: .5rem; }
+.coverage dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+.speedrun .chapter-intro, .speedrun .chapter-subtitle, .speedrun .question .help { display: none; }
+.speedrun .question { margin-top: .75rem; }
