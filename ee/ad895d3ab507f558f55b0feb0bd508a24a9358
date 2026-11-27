@@ -1,0 +1,27 @@
+AGENTS.md
+  s_e21dbb2078b1a1::t_a53d09682e4fd6 1-5
+docs/hugo.toml
+  s_e21dbb2078b1a1::t_ec195f3fd3c255 1-11
+data/guide.yaml
+  s_e21dbb2078b1a1::t_8f91d9d176295f 1-182
+pixi.lock
+  s_e21dbb2078b1a1::t_1aed98fa64699c 1-677
+pixi.toml
+  s_e21dbb2078b1a1::t_68937a21857d17 1-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "eead895d3ab507f558f55b0feb0bd508a24a9358",
+  "prompts": {},
+  "sessions": {
+    "s_e21dbb2078b1a1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a21d73-d2f2-7832-ae03-9ac1d7f430d7",
+        "model": "gpt-6.2-astra"
+      },
+      "human_author": "Nicholas A. Del Grosso <delgrosso.nick@gmail.com>"
+    }
+  }
+}
