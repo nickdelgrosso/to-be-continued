@@ -285,3 +285,16 @@ select { max-width: 100%; padding: .4rem .65rem; border: 1px solid var(--rule-da
 }
 .appearance { display: flex; align-items: center; flex-wrap: wrap; gap: .35rem .6rem; margin-top: .7rem; color: var(--color-text-secondary); font-size: .85rem; }
 .appearance select { padding-block: .26rem; }
+
+:root[data-persona="mystery"] { --color-brick: #77374d; --page: #f3e9e3; --color-surface: #fff9f5; --rule: #ccb9ba; }
+:root[data-persona="mystery"][data-theme="dark"] { --color-brick: #f3abc2; --page: #241c22; --color-surface: #30252c; --rule: #63505f; }
+:root[data-persona="adventure"] { --color-brick: #315e4c; --page: #edf0df; --color-surface: #f8faef; --rule: #b4bca1; }
+:root[data-persona="adventure"][data-theme="dark"] { --color-brick: #a6dbc0; --page: #19251f; --color-surface: #23322a; --rule: #4d6355; }
+[data-persona="mystery"] .chapter-symbol { border-radius: 50%; }
+[data-persona="mystery"] .chapter-heading .eyebrow { font-family: var(--font-code); }
+[data-persona="adventure"] .chapter { border-top-style: dashed; }
+.appearance { gap: .4rem .6rem; }
+.appearance label:not(:first-child) { margin-left: .35rem; }
+@media (max-width: 45rem) { .appearance { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; } .appearance label:not(:first-child) { margin-left: 0; } .appearance select { width: 100%; } .title-page:has(.appearance) { padding-right: 0; } }
+
+.prompt-topics { margin-top: .32rem; color: var(--color-text-secondary); font-size: .78rem; }

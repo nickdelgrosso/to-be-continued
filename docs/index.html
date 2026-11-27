@@ -84,6 +84,8 @@ pixi run build</code></pre>
           <dd>Converts a guide and a map of field values to deterministic Markdown, and parses a versioned file back into values. This module runs independently of the browser.</dd>
           <dt><code>assets/js/draft.mjs</code> and <code>assets/js/files.mjs</code></dt>
           <dd>The draft store reads and writes browser storage. File helpers copy text, display raw Markdown and download a UTF-8 blob. The application keeps all three operations local.</dd>
+          <dt><code>data/personas.yaml</code>, <code>writing.mjs</code>, <code>preferences.mjs</code>, <code>appearance.mjs</code> and <code>scope.mjs</code></dt><dd>Persona text is keyed by permanent chapter and prompt IDs. Missing translations use the Field Notes wording. The browser captures canonical export headings before applying a persona. Preferences are stored separately from answers. Scope choices affect navigation and the coverage denominator. An answered chapter always stays applicable.</dd>
+          <dt><code>assets/js/preview.mjs</code> and <code>assets/vendor/</code></dt><dd>The source view, copy and download share one writer. The rendered view removes the interchange header, parses the body with Marked, escapes raw HTML, substitutes image alt text, and sanitises the result with DOMPurify. Libraries ship with the site. See <code>static/third-party/</code> for package versions and licences. To update, fetch the pinned npm tarballs with <code>npm pack --ignore-scripts</code>, compare their integrity against the registry, copy the ESM files named in <code>versions.txt</code>, and refresh the licences. Run the preview tests and check in a browser that an image in a draft makes zero network requests.</dd>
           <dt><code>assets/guide.css</code> and <code>assets/*.svg</code></dt>
           <dd>The stylesheet defines notebook colors, typography, focus indicators, writing surfaces and responsive navigation. The book illustration, chapter symbols and favicon are local assets.</dd>
         </dl>
@@ -97,13 +99,14 @@ pixi run build</code></pre>
           <li>Set the chapter’s characterful <code>title</code> and a descriptive <code>subtitle</code>. The subtitle appears as a heading in the exported document. The order in YAML drives both the form and the document.</li>
           <li>To set a question aside, remove it from the chapter list. Ordinary edits retain its stored answer. Relisting its ID makes the answer visible again.</li>
         </ol>
+        <p>Give one prompt per chapter a short <code>quick</code> question for Speedrun. After regrouping, the first marked prompt in each chapter wins. A chapter without a marked prompt uses its first question. Set <code>tags</code> to the relevant technical, personal or ethical topics. Each applicable prompt counts once per listed topic, across the full questionnaire. Put any opt-out wording in the chapter’s <code>scope</code> and <code>omit</code> keys. Personalised labels and alternate quick prompts go in <code>data/personas.yaml</code>.</p>
         <p>When retiring an answered question permanently, consider how people with existing files will recover their work. The importer reports an unknown question before applying any changes. Their original Markdown contains the full answer.</p>
       </section>
       <section id="drafts">
         <h2>Drafts and privacy</h2>
         <p>The storage key includes a namespace, storage version and deployment path. Within the stored object, <code>project.</code> prefixes metadata and <code>answer.</code> prefixes question IDs. A normal edit reads the latest draft and patches the edited fields. A confirmed replacement writes one complete snapshot.</p>
         <p>Keep raw input intact. Whitespace determines whether a response has content, but the writer keeps the original text for every included response. A failed write leaves the edits in memory and displays a warning. A later successful write retries pending edits. Export remains available while storage is blocked.</p>
-        <p>Use text nodes or control values for researcher input. The production page restricts network connections and form submission. An upload reads a local file and parses it fully before asking to replace an existing draft.</p>
+        <p>Use text nodes or control values for researcher input. The production page restricts network connections and form submission. Browsing, dropping and pasting an exported file use the same version check and confirmation before replacing a draft.</p>
       </section>
       <section id="interchange">
         <h2>Markdown interchange</h2>

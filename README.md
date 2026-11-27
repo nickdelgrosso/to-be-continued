@@ -10,9 +10,11 @@ You know which notebook to open first, why one approach was abandoned and what a
 
 ### Write a handover
 
-1. Pick a chapter. The twenty starting prompts cover research context, everyday workflow, setup, adapting the code, verification and lessons learned. A single useful answer is enough.
-2. Write in your own words. File paths, uncertainties, code blocks and observations are all welcome. Preview shows the exact Markdown you can copy or download.
-3. Export **HANDOVER.md** and place it beside your code. To continue later or on another device, drop the file onto the guide or choose **Upload File**.
+1. Choose the full guide or Speedrun. Speedrun asks one short question in each of six chapters. You can switch back to the full guide at any point. Skip setup or workflow when they already have documentation, or skip adaptation when it falls outside the handover.
+2. Write in your own words. File paths, uncertainties, code blocks and observations are all welcome. Preview shows the exact Markdown you can copy or download, plus a rendered reading view. The sidebar shows answered prompts by technical, personal and ethical topic.
+3. Export **HANDOVER.md** and place it beside your code. To continue later or on another device, drop the file onto the guide or choose **Upload File** to browse or paste its Markdown.
+
+Field Notes is the default persona. Murder Mystery and Choose Your Own Adventure change the illustration, chapter names and questions. All three export the same plain headings. Choose System, Light or Dark for the colour scheme. This browser remembers your appearance choices.
 
 ## Run locally
 
@@ -34,7 +36,7 @@ The tests use Node’s built-in test runner. They cover the Markdown format, fil
 
 ## Work on the questions
 
-Edit **`data/guide.yaml`**. It contains the introduction, optional project fields, chapter definitions and question bank. All chapters appear in the Write tab on one form. The contents list and Markdown preview follow the same order.
+Edit **`data/guide.yaml`**. Set `quick` on a prompt to feature it in Speedrun and `tags` to count it towards topic coverage. Persona wording and artwork choices live in `data/personas.yaml`. It contains the introduction, optional project fields, chapter definitions and question bank. All chapters appear in the Write tab on one form. The contents list and Markdown preview follow the same order.
 
 - **Move a question.** Cut its ID from one chapter’s `questions` list and paste it into another. Its saved and exported answers follow its ID.
 - **Change the order.** Move IDs within a list or move whole entries in `chapters`. Update the displayed Roman numerals when you reorder chapters.
@@ -51,7 +53,7 @@ The available accents are `mustard`, `orange`, `olive`, `tobacco`, `brick` and `
 
 Writing updates a local draft in the current browser. The storage key includes the deployment path, so two installations on the same origin have independent drafts. Clearing browser data, switching browser profiles or changing the site’s address can make a draft unavailable. Export a copy worth keeping. If browser storage fails, editing, preview and download still work for the open page.
 
-Choose **Upload File** to reopen an exported `HANDOVER.md`, or drop the file onto the page. The guide reads it on the device. Opening a valid file over an existing draft asks for confirmation. **Clear responses** also asks before removing the local draft. Researchers own their responses and exported documents.
+Choose **Upload File** to reopen an exported `HANDOVER.md`, drop the file onto the page, or paste the complete exported Markdown. The guide reads it on the device. Opening a valid file over an existing draft asks for confirmation. **Clear responses** also asks before removing the local draft. Researchers own their responses and exported documents.
 
 ### How the Markdown format works
 
@@ -81,6 +83,6 @@ Pass its full public URL, including any subpath.
 pixi run build --baseURL https://example.org/lab/field-guide/
 ```
 
-The published files use the local stylesheet, illustrations and vanilla JavaScript. Questionnaire answers, uploaded files and clipboard operations stay client-side. The production page also sets a content security policy that disables outgoing connections and form submissions.
+The published files use the local stylesheet, illustrations and JavaScript. Hugo bundles Marked and DOMPurify from the checked-in copies in `assets/vendor/`. Their licences and package versions are in `static/third-party/`. Questionnaire answers, uploaded files and clipboard operations stay client-side. The production page also sets a content security policy that disables outgoing connections and form submissions.
 
 The site source and original illustrations are available under the [MIT license](LICENSE). The repository records Codex’s contributions in [aidecl.yaml](aidecl.yaml) using the [AI Declaration Format](https://ai-declaration.org/).

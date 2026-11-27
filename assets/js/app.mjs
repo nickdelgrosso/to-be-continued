@@ -1,12 +1,8 @@
 import { DraftStore } from "./draft.mjs";
 import { copyMarkdown, downloadMarkdown, showRawText } from "./files.mjs";
 import { fromMarkdown, ImportError, toMarkdown } from "./markdown.mjs";
-
-import { chapterApplies, coverage } from "./scope.mjs";
-import { preference } from "./preferences.mjs";
-
+import { setupWriting } from "./writing.mjs";
 import { renderDocument } from "./preview.mjs";
-
 import { setupAppearance } from "./appearance.mjs";
 
 setupAppearance();
@@ -74,7 +70,7 @@ function storageStatus(state) {
 }
 
 function updateCount() {
-  applyRoute();
+  writing.refresh();
   let count = 0;
   for (const [key, field] of controls) {
     if (key.startsWith("answer.") && field.value.trim()) count++;
@@ -135,7 +131,7 @@ function persist() {
 }
 
 function replaceDraft(values) {
-  resetScope();
+  writing.resetScope();
   edits.clear();
   replacementPending = true;
   fill(values);
@@ -215,7 +211,10 @@ window.addEventListener("scroll", () => {
   if (scrollFrame) return;
   scrollFrame = requestAnimationFrame(() => { markCurrent(); scrollFrame = 0; });
 }, { passive: true });
-function fitContents() { contents.open = !compact.matches; }
+function fitContents() {
+  contents.open = !compact.matches;
+  document.querySelector(".coverage").open = !compact.matches;
+}
 compact.addEventListener("change", fitContents);
 fitContents();
 for (const link of links) {
@@ -301,11 +300,12 @@ byId("confirm-replace").addEventListener("click", () => {
   openImported(values);
 });
 replaceDialog.addEventListener("close", () => { pendingImport = undefined; });
-uploadDialog.addEventListener("close", () => { if (!uploadDialog.open) {
-    readNumber++;
-    byId("paste-source").value = "";
-    byId("paste-box").open = false;
-  } });
+uploadDialog.addEventListener("close", () => {
+  if (uploadDialog.open) return;
+  readNumber++;
+  byId("paste-source").value = "";
+  byId("paste-box").open = false;
+});
 
 let dragDepth = 0;
 function resetDrag() {
@@ -389,47 +389,10 @@ byId("confirm-clear").addEventListener("click", () => {
   announce(saved ? messages.cleared : messages.clearFailed);
 });
 
-const route = byId("route");
-const chapters = [...form.querySelectorAll("[data-chapter]")];
-const scope = new Map([...document.querySelectorAll("[data-scope]")].map(select => [select.dataset.scope, select]));
-for (const [id, select] of scope) {
-  const pref = preference("scope." + id);
-  select.value = pref.read() || "unsure";
-  select.addEventListener("change", () => { pref.write(select.value); applyRoute(); });
-}
-function resetScope() {
-  for (const [id, select] of scope) {
-    select.value = "unsure";
-    preference("scope." + id).write(select.value);
-  }
-}
-function applyRoute() {
-  const applicable = [];
-  const quick = route.value === "quick";
-  form.classList.toggle("speedrun", quick);
-  for (const section of chapters) {
-    const questions = [...section.querySelectorAll(".question")];
-    const fields = questions.map(question => ({ tags: question.dataset.tags.split(" "), value: question.querySelector("textarea").value }));
-    const included = chapterApplies(scope.get(section.dataset.chapter)?.value, fields);
-    if (included) applicable.push(...fields);
-    for (const question of questions) {
-      question.hidden = quick && !question.dataset.quick;
-      const label = question.querySelector("label");
-      const wording = quick && question.dataset.quick || label.dataset.prompt;
-      if (label.textContent !== wording) label.textContent = wording;
-    }
-    section.hidden = !included || questions.every(question => question.hidden);
-    contents.querySelector('a[href="#' + section.id + '"]').hidden = section.hidden;
-  }
-  for (const output of document.querySelectorAll("[data-coverage]")) {
-    const { done, total, percent } = coverage(applicable, output.dataset.coverage);
-    output.textContent = total ? messages.fraction.replace("{done}", done).replace("{total}", total).replace("{percent}", percent) : messages.noneApplicable;
-  }
-  markCurrent();
-}
-route.addEventListener("change", () => { applyRoute(); if (needsResize) controls.forEach(resizeField); });
-byId("route-picker").hidden = !form.querySelector("[data-quick]");
-applyRoute();
+const writing = setupWriting({
+  form, contents, messages, markCurrent,
+  onVisibilityChange() { if (needsResize) controls.forEach(resizeField); },
+});
 restore();
 for (const field of controls.values()) field.readOnly = false;
 for (const button of document.querySelectorAll("[data-js]")) button.disabled = false;

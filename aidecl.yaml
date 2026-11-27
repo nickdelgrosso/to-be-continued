@@ -10,7 +10,7 @@ ai_usage:
     The project brief supplied the purpose, six chapter themes, twenty starting
     questions, visual direction and a reference answer. The requester directed
     changes to the form, file interchange and deployment targets. OpenAI Codex
-    implemented the site, drafted additional guidance and examples, drew the
+    implemented the site, wrote the alternate persona prompts and examples, drew the
     SVG illustrations, wrote the documentation and pipelines, and ran software
     and browser checks. Researchers write their own handover responses.
   tools:

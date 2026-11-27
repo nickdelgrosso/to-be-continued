@@ -4,17 +4,22 @@
     {{ with .icon }}<span class="chapter-symbol">{{ partial "icon.html" . }}</span>{{ end }}
     <div>
       <p class="eyebrow">{{ $ui.chapter }} {{ .number }}</p>
-      <h2 id="title-{{ .id }}">{{ .title }}</h2>
+      <h2 id="title-{{ .id }}" data-default="{{ .title }}">{{ .title }}</h2>
     </div>
   </div>
   <h3 class="chapter-subtitle">{{ .subtitle }}</h3>
   <p class="chapter-intro">{{ .intro }}</p>
+  {{ $quickID := "" }}
+  {{ range $id := .questions }}{{ with index hugo.Data.guide.questions $id }}{{ if and .quick (not $quickID) }}{{ $quickID = $id }}{{ end }}{{ end }}{{ end }}
+  {{ if and (not $quickID) .questions }}{{ $quickID = index .questions 0 }}{{ end }}
   {{ range $id := .questions }}
     {{ with index hugo.Data.guide.questions $id }}
-    <div class="question" data-tags="{{ delimit (.tags | default slice) " " }}"{{ with .quick }} data-quick="{{ . }}"{{ end }}>
+    <div class="question" data-tags="{{ delimit (.tags | default slice) " " }}"{{ if eq $id $quickID }} data-quick="{{ .quick | default .text }}"{{ end }}>
       <label for="answer-{{ $id }}" data-prompt="{{ .text }}">{{ .text }}</label>
       {{ with .help }}<p class="help" id="help-{{ $id }}">{{ . | markdownify }}</p>{{ end }}
       <textarea id="answer-{{ $id }}" data-field="answer.{{ $id }}" rows="4" placeholder="{{ $ui.answerPlaceholder }}" {{ with .help }}aria-describedby="help-{{ $id }}"{{ end }} readonly></textarea>
+      {{ $tags := where $ui.coverageTags "id" "in" (.tags | default slice) }}
+      {{ with $tags }}<p class="prompt-topics" title="{{ $ui.topicHelp }}">{{ range $i, $tag := . }}{{ if $i }} · {{ end }}{{ $tag.label }}{{ end }}</p>{{ end }}
       {{ if or .example .references }}
       <details class="field-notes">
         <summary>{{ partial "icon.html" "chevron" }}{{ if .references }}{{ $ui.notes }}{{ else }}{{ $ui.example }}{{ end }}</summary>

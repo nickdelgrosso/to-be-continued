@@ -32,6 +32,12 @@ for (const path of ["/", "/a-lab/a-project/"]) {
     assert.ok(!published.includes("docs"));
     const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
     assert.equal(ids.length, new Set(ids).size, "IDs, including every featured question, must be unique");
+    const personas = JSON.parse(/<script[^>]+id="persona-data"[^>]*>(.*?)<\/script>/s.exec(html)[1]);
+    for (const persona of personas.items) {
+      if (persona.id === personas.default) continue;
+      assert.ok(html.includes('value="' + persona.id + '"'));
+      assert.ok(persona.illustration);
+    }
     const assets = [...html.matchAll(/<(?:link|script|img|use)\b[^>]*?\s(?:src|href)="([^"]+)"/g)];
     assert.ok(assets.length > 0);
     for (const [, asset] of assets) {
@@ -73,6 +79,7 @@ test("a changed question bank and grouping render without layout or application 
     assert.ok(html.includes('data-format-version="7"'));
     assert.ok(html.includes('href="#chapter-new"'));
     assert.ok(html.includes("New grouping"));
+    assert.ok(html.includes('data-quick="Where would you stop?"'));
     assert.deepEqual([...html.matchAll(/data-field="answer\.([^"]+)"/g)].map(match => match[1]), ["stop", "repeat"]);
   } finally {
     writeFileSync(path, original);

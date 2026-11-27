@@ -1,5 +1,5 @@
 subtitle: A field guide to research code handover
-tagline: Notes for whoever picks up the code next.
+tagline: What you know is worth passing on.
 skip: Skip to the handover form
 home: Return to the title page
 views: Handover views
@@ -98,3 +98,6 @@ colourModes:
   - { id: system, label: System }
   - { id: light, label: Light }
   - { id: dark, label: Dark }
+
+persona: Choose your persona
+topicHelp: This answer counts towards these topics in your handover coverage.

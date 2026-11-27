@@ -34,10 +34,11 @@
       <div class="title-copy">
         <p class="eyebrow title-kicker">{{ $ui.subtitle }}</p>
         <h1>{{ site.Title }}</h1>
-        <p class="tagline">{{ $ui.tagline }}</p>
+        <p class="tagline" data-default="{{ $ui.tagline }}">{{ $ui.tagline }}</p>
         {{ partial "appearance.html" . }}
       </div>
-      {{ with resources.Get "field-notebooks.svg" | fingerprint }}<img class="cover-art" alt="" width="300" height="170" src="{{ .RelPermalink }}">{{ end }}
+      {{ $defaultPersona := index (where hugo.Data.personas.items "id" hugo.Data.personas.default) 0 }}
+      {{ with resources.Get $defaultPersona.illustration | fingerprint }}<img class="cover-art" alt="" width="300" height="170" src="{{ .RelPermalink }}">{{ end }}
     </div>
     <noscript><p class="notice">{{ $ui.noScript }}</p></noscript>
     <div class="spread">
@@ -95,6 +96,7 @@
   {{ partial "dialogs.html" $ui }}
   <p id="feedback" class="feedback" role="status"></p>
   <div id="drop-overlay" class="drop-overlay" hidden aria-hidden="true"><span>{{ partial "icon.html" "upload" }}{{ $ui.dropOverlay }}</span></div>
+  <script type="application/json" id="persona-data">{{ hugo.Data.personas | jsonify | safeJS }}</script>
   <script type="application/json" id="messages">{{ $ui.messages | jsonify | safeJS }}</script>
 </body>
 </html>

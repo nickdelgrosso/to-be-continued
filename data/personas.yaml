@@ -1,0 +1,83 @@
+default: field
+items:
+  - id: field
+    label: Field Notes
+    illustration: field-notebooks.svg
+  - id: mystery
+    label: Murder Mystery
+    illustration: case-file.svg
+    tagline: There’s a story in these files. Leave the next detective a clue.
+    chapters:
+      story: The case so far
+      lessons: Notes from the old detective
+      verification: Check the alibi
+      workflow: Follow the trail
+      internals: Crack the codebook
+      setup: Open the case file
+    prompts:
+      purpose: What question opened this case?
+      decisions: Which lead did you abandon, and why?
+      people: Who else knows a piece of the story?
+      next-steps: Which lead would you follow next?
+      troubleshooting: Which false lead has cost you time?
+      fragile-parts: Which part of the case is still on shaky ground?
+      hindsight: Which clue would have helped you on day one?
+      trust-checks: What evidence convinces you the result holds up?
+      reference-results: Which exhibit should someone be able to reproduce?
+      misleading-results: When does a result have a convincing but false alibi?
+      consequences: Which evidence needs careful handling?
+      typical-session: How do you trace a result back to the raw evidence?
+      manual-steps: Which step still needs a detective’s eye?
+      regular-tools: Which tools come out on almost every case?
+      reading-order: Which file holds the first clue?
+      vocabulary: Which code name could send someone down the wrong trail?
+      adaptation: What would you change for a fresh set of evidence?
+      first-run: What small case can a new detective solve first?
+      resources: Which evidence or equipment needs special access?
+      setup-assumptions: Which setup detail has tripped up past detectives?
+    quick:
+      decisions: Which decision would stump a new detective?
+      hindsight: Which clue did you spot too late?
+      trust-checks: What would you double-check as evidence?
+      manual-steps: Which clue do you check by hand?
+      vocabulary: Which code name needs decoding?
+      first-run: What’s the smallest case to try?
+  - id: adventure
+    label: Choose Your Own Adventure
+    illustration: trail-map.svg
+    tagline: Someone else is picking up your map. Mark the turns that mattered.
+    chapters:
+      story: How you got here
+      lessons: Advice from a returning traveller
+      verification: Read the warning signs
+      workflow: Walk the usual route
+      internals: Beyond the marked trail
+      setup: Pack for the first trip
+    prompts:
+      purpose: Where were you trying to get to?
+      decisions: Which fork in the path shaped the project?
+      people: Who else travels this route or counts on its results?
+      next-steps: Which path would you explore next?
+      troubleshooting: Which wrong turn have you made before?
+      fragile-parts: Where does the path get a bit wobbly?
+      hindsight: What would you tell yourself at the trailhead?
+      trust-checks: Which landmark tells you a result is on course?
+      reference-results: Which figure or test is a good checkpoint?
+      misleading-results: When can the path look right but lead you astray?
+      consequences: Where should a traveller pause before going further?
+      typical-session: What route takes you from raw data to a finished result?
+      manual-steps: Where do you take over from the workflow?
+      regular-tools: Which tools earn their place in your pack?
+      reading-order: Which file would you mark as the starting point?
+      vocabulary: Which names or units belong in the map legend?
+      adaptation: Where would you turn off for a different dataset?
+      first-run: What’s a good first outing with the code?
+      resources: What access or equipment does someone need for the trip?
+      setup-assumptions: What’s easy to forget before setting off?
+    quick:
+      decisions: Which choice changed the course of the project?
+      hindsight: What advice would have saved you a detour?
+      trust-checks: Which checkpoint tells you a result is sound?
+      manual-steps: Where do you take the controls?
+      vocabulary: Which name needs a map legend?
+      first-run: What’s the shortest route to a first result?
