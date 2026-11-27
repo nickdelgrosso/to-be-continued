@@ -91,3 +91,10 @@ coverageTags:
   - { id: technical, label: Technical }
   - { id: personal, label: Personal }
   - { id: ethical, label: Ethical }
+
+appearance: Appearance
+colourMode: Colour mode
+colourModes:
+  - { id: system, label: System }
+  - { id: light, label: Light }
+  - { id: dark, label: Dark }

@@ -7,6 +7,9 @@ import { preference } from "./preferences.mjs";
 
 import { renderDocument } from "./preview.mjs";
 
+import { setupAppearance } from "./appearance.mjs";
+
+setupAppearance();
 const byId = id => document.getElementById(id);
 const form = byId("handover");
 const messages = JSON.parse(byId("messages").textContent);

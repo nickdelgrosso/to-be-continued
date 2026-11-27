@@ -1,0 +1,5 @@
+{{ $ui := hugo.Data.interface }}
+<div class="appearance" aria-label="{{ $ui.appearance }}" role="group">
+  <label for="colour-mode">{{ $ui.colourMode }}</label>
+  <select id="colour-mode" data-js disabled>{{ range $ui.colourModes }}<option value="{{ .id }}">{{ .label }}</option>{{ end }}</select>
+</div>

@@ -35,6 +35,7 @@
         <p class="eyebrow title-kicker">{{ $ui.subtitle }}</p>
         <h1>{{ site.Title }}</h1>
         <p class="tagline">{{ $ui.tagline }}</p>
+        {{ partial "appearance.html" . }}
       </div>
       {{ with resources.Get "field-notebooks.svg" | fingerprint }}<img class="cover-art" alt="" width="300" height="170" src="{{ .RelPermalink }}">{{ end }}
     </div>
