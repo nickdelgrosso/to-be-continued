@@ -1,6 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{{ .description }}">
+{{ with partialCached "agent-resources.html" site.Home }}<link rel="describedby" type="text/plain" href="{{ .RelPermalink }}">{{ end }}
 {{ if hugo.IsProduction }}<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">{{ end }}
 <title>{{ .title }}</title>
 {{ with resources.Get "favicon.svg" | fingerprint }}<link rel="icon" type="image/svg+xml" href="{{ .RelPermalink }}">{{ end }}

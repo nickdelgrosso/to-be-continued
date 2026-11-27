@@ -1,3 +1,16 @@
+// Convert the published questionnaire into the same export model the form uses.
+export function guideFromQuestionnaire(data) {
+  return {
+    version: data.formatVersion,
+    title: data.documentTitle,
+    project: data.project.fields.map(field => ({ id: field.id, label: field.exportLabel })),
+    chapters: data.chapters.map(chapter => ({
+      subtitle: chapter.subtitle,
+      questions: chapter.questions.map(id => ({ id, text: data.questions[id].text })),
+    })),
+  };
+}
+
 // The header carries only what cannot be recovered from the prose after regrouping.
 // JSON flow sequences are also valid YAML, so the file needs no YAML runtime.
 export function toMarkdown(guide, values) {

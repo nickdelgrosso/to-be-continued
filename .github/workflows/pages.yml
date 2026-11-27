@@ -28,7 +28,9 @@ jobs:
       - name: Build the production site
         env:
           PAGES_BASE_URL: ${{ steps.pages.outputs.base_url }}
-        run: pixi run --locked build --baseURL "${PAGES_BASE_URL%/}/"
+        run: |
+          pages_url="https://${PAGES_BASE_URL#*://}"
+          pixi run --locked build --baseURL "${pages_url%/}/"
       - name: Upload the site
         uses: actions/upload-pages-artifact@v5
         with:

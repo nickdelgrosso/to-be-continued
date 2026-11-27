@@ -1,0 +1,9 @@
+{{- $quickID := "" -}}
+{{- range $id := .questions -}}
+  {{- with index hugo.Data.guide.questions $id -}}
+    {{- if .quick -}}{{- $quickID = $id -}}{{- end -}}
+  {{- end -}}
+  {{- if $quickID -}}{{- break -}}{{- end -}}
+{{- end -}}
+{{- if and (not $quickID) .questions }}{{ $quickID = index .questions 0 }}{{ end -}}
+{{- return $quickID -}}

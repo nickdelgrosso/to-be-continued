@@ -1,0 +1,21 @@
+# {{ site.Title }}
+
+> {{ (site.GetPage "/about").Description }}
+
+{{ range .guide.introduction.paragraphs }}{{ . }}
+{{ end }}
+When someone asks for a handover, read the authoring guide below. Inspect the project they give you and preserve any existing handover. Draft what the evidence supports, then ask the researcher one question at a time about the gaps. Deliver an editable `HANDOVER.md` that opens in the web form. All questions are optional.
+
+{{ with (site.GetPage "/about").Params.team }}The team behind this field guide is {{ delimit . ", " " and " }}. Credit the contributors to the researcher’s own project in their handover.{{ end }}
+
+## Make a handover
+
+- [Interview and authoring guide]({{ .instructions.Permalink }}): Current prompts, Speedrun, file format, worked example and final checks.
+- [Questionnaire data]({{ .questions.Permalink }}): Ordered chapters, stable IDs, canonical wording, help, examples and format version.
+- [Markdown writer and reader]({{ .writer.Permalink }}): Optional standalone JavaScript module used by the website. Runs locally.
+
+## Optional
+
+- [Write, import or preview a handover]({{ site.Home.Permalink }})
+- [{{ (site.GetPage "/about").Title }}]({{ (site.GetPage "/about").Permalink }})
+- [{{ hugo.Data.reading.title }}]({{ (site.GetPage "/references").Permalink }})

@@ -1,0 +1,14 @@
+{{- $guide := hugo.Data.guide -}}
+{{- $questions := resources.FromString "handover/questionnaire.json" (printf "%s\n" ($guide | jsonify (dict "indent" "  " "noHTMLEscape" true))) -}}
+{{- $writer := resources.Get "js/markdown.mjs" | resources.Copy "handover/markdown.mjs" -}}
+{{- $sample := dict "order" (slice) -}}
+{{- range $chapter := $guide.chapters -}}
+  {{- with $chapter.questions -}}
+    {{- $id := index . 0 -}}
+    {{- $sample = dict "chapter" $chapter "question" (index $guide.questions $id) "order" (slice $id) -}}
+    {{- break -}}
+  {{- end -}}
+{{- end -}}
+{{- $context := dict "guide" $guide "questions" $questions "writer" $writer "sample" $sample -}}
+{{- $instructions := resources.Get "agents/handover-guide.md" | resources.ExecuteAsTemplate "handover/guide.md" $context -}}
+{{- return (resources.Get "agents/llms.txt" | resources.ExecuteAsTemplate "llms.txt" (merge $context (dict "instructions" $instructions))) -}}

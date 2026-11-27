@@ -16,6 +16,14 @@ You know which notebook to open first, why one approach was abandoned and what a
 
 Field Notes is the default persona. Murder Mystery and Choose Your Own Adventure change the illustration, chapter names and questions. All three export the same plain headings. Choose System, Light or Dark for the colour scheme. This browser remembers your appearance choices.
 
+### Make a handover with your own agent
+
+Open your project in your usual agent and give it this prompt:
+
+> Read https://to-be-continued.org/llms.txt and its authoring guide. Look through this project and any existing handover. Draft what you can support with evidence, then ask me one question at a time about what you can’t tell from the files. Make a HANDOVER.md I can open in the guide.
+
+The agent guide, questionnaire JSON and local Markdown writer ship with each site build. You can review the result in the browser with **Upload File**. [Agent entry point](https://to-be-continued.org/llms.txt)
+
 ## Run locally
 
 Install Pixi, then run these commands from this directory. The checked-in lockfile supplies Hugo, Node.js and the GitHub CLI on Windows x64, Linux x64, Intel macOS and Apple Silicon. [Pixi installation](https://pixi.prefix.dev/latest/installation/)

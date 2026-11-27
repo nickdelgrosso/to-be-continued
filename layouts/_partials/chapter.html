@@ -9,9 +9,7 @@
   </div>
   <h3 class="chapter-subtitle">{{ .subtitle }}</h3>
   <p class="chapter-intro">{{ .intro }}</p>
-  {{ $quickID := "" }}
-  {{ range $id := .questions }}{{ with index hugo.Data.guide.questions $id }}{{ if and .quick (not $quickID) }}{{ $quickID = $id }}{{ end }}{{ end }}{{ end }}
-  {{ if and (not $quickID) .questions }}{{ $quickID = index .questions 0 }}{{ end }}
+  {{ $quickID := partial "quick-question.html" . }}
   {{ range $id := .questions }}
     {{ with index hugo.Data.guide.questions $id }}
     <div class="question" data-tags="{{ delimit (.tags | default slice) " " }}"{{ if eq $id $quickID }} data-quick="{{ .quick | default .text }}"{{ end }}>

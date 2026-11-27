@@ -12,7 +12,8 @@ ai_usage:
     changes to the form, file interchange and deployment targets. OpenAI Codex
     implemented the site, wrote the alternate persona prompts and examples, drew the
     original SVG illustrations, researched and annotated the reading list, wrote the documentation and pipelines, and ran software
-    and browser checks. Researchers write their own handover responses.
+    and browser checks. Codex also drafted the public agent interview guide.
+    Researchers can write their responses directly or review a draft made with their own agent.
   tools:
     - name: OpenAI Codex
       vendor: OpenAI

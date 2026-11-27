@@ -111,6 +111,8 @@ pixi run build</code></pre>
       </section>
       <section id="interchange">
         <h2>Markdown interchange</h2>
+        <p>Agents can start at <code>llms.txt</code>. The shared HTML head publishes it through <code>layouts/_partials/agent-resources.html</code>. Hugo expands <code>assets/agents/</code> into the index and interview guide, serialises <code>data/guide.yaml</code> as <code>handover/questionnaire.json</code>, and copies the form’s Markdown module for local use. Both the form and the interview guide use the same Speedrun selection. Each Pages build regenerates these files at its configured base URL.</p>
+        <p>When changing project intent, interview guidance or interchange rules, review the agent text in the same change. The site tests follow the published links, import the worked example, exercise the local writer, and build a second questionnaire with different wording, grouping and format version.</p>
         <p>The exporter writes a short YAML header followed by the project metadata and answered questions. <code>handover_version</code> identifies the interchange format and <code>question_order</code> identifies the responses in body order. Each answer appears once as ordinary Markdown. Stable IDs let a later form use newer wording or a different grouping.</p>
         <p>Thematic breaks separate answer records. The writer chooses a break length absent from the answer text. The reader looks for that break before a question heading, so a researcher’s own headings, code blocks and dividers survive a round trip. Import accepts UTF-8 files with a byte-order mark and Windows line endings.</p>
         <p>Change <code>formatVersion</code> for incompatible changes to the interchange contract. Regrouping alone needs no version bump. A supported file can be edited by hand if its record order, headings, boundaries and header stay intact. On a version mismatch, report the file’s version and the expected version, and keep the current draft available.</p>
@@ -127,7 +129,7 @@ pixi run build</code></pre>
       </section>
       <section id="release">
         <h2>Publishing and attribution</h2>
-        <p>GitLab uses <code>.gitlab-ci.yml</code> and <code>CI_PAGES_URL</code>. GitHub uses <code>.github/workflows/pages.yml</code> and the base URL returned by its Pages configuration action. Both run the Pixi tests and use the production build on the default branch. Only <code>public/</code> is selected for deployment.</p>
+        <p>GitLab uses <code>.gitlab-ci.yml</code> and <code>CI_PAGES_URL</code>. GitHub uses the host and path from its Pages configuration action with HTTPS, so the absolute links in <code>llms.txt</code> work on the secure site even when the API reports an HTTP URL. Both run the Pixi tests and publish <code>public/</code> on the default branch.</p>
         <p>Keep developer material under <code>docs/</code>. Adding it to the main site’s <code>static/</code>, <code>content/</code> or asset pipeline would publish it. The production tests check that the generated site contains the questionnaire, references and About pages. Edit the project story and team credits in <code>content/about.md</code>.</p>
         <p>The repository’s <code>LICENSE</code> covers the MIT-licensed site and illustrations. The team records AI involvement in <code>aidecl.yaml</code>. When that involvement changes, update the declaration and check it with <code>aidecl validate aidecl.yaml</code>. Researchers retain ownership of their exported notes.</p>
       </section>
